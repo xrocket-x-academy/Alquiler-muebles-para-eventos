@@ -1,23 +1,31 @@
-const {Sequelize, DataTypes } = require('sequelize');
+const { Model } = require('sequelize');
 
-const sequelize = new Sequelize ('mysql://root:root@localhost/proyectomuebledb');
-
-const mueble = sequelize.define('mueble', {
+module.exports = (sequelize, DataTypes) => {
+  class Mueble extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate() {
+      // define association here
+    }
+  }
+  Mueble.init({
     name: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     description: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     price: {
-        type: DataTypes.DECIMAL(10,2),
-        allowNull: false
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
     },
-
-
-});
-
-module.exports = mueble;
-
-
+  }, {
+    sequelize,
+    modelName: 'Mueble',
+  });
+  return Mueble;
+};
