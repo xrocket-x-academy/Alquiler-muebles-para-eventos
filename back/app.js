@@ -87,3 +87,14 @@ models.sequelize.authenticate()
 
 app.use('/', routes);
 module.exports = app;
+
+//rutas para los muebles
+
+const muebleRoutes = require('./routes/muebleRoutes');
+app.use('/Alquiler-muebles-para-eventos/back', muebleRoutes);
+
+// iniciar el servidor
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
+});
