@@ -1,5 +1,5 @@
 const Express = require('express');
-
+const muebleRouter = require('./muebleroutes');
 // Middlewares:
 const rootPath = require('../middleware/root_path.middleware');
 const errors = require('../middleware/error_handler.middleware');
@@ -7,7 +7,7 @@ const errors = require('../middleware/error_handler.middleware');
 const app = Express();
 
 // Rutas
-
+app.use('/muebles', muebleRouter);
 // use=
 app.use('/ping', (req, res) => {
   res.json({
