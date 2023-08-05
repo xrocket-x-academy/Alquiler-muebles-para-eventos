@@ -1,6 +1,6 @@
 const mueble = require('../models/mueble')
 
-exports.createmueble = async (req, res) => {
+exports.createMueble = async (req, res) => {
     try{
         const {name, description, price } = req.body;
         const newmueble = await mueble.create ({ name, description, price });
