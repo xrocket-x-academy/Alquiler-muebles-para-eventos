@@ -21,10 +21,10 @@ const sequelizeOptions = {
   },
 };
 
-const sequelize = new Sequelize(
+const sequelizeDatabase = new Sequelize(
   process.env.DB_DATABASE,
   process.env.DB_USERNAME,
   process.env.DB_PASSWORD,
   sequelizeOptions,
 );
-module.exports.connection = sequelize;
+module.exports = { sequelizeDatabase };
