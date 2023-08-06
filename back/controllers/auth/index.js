@@ -1,6 +1,6 @@
-const { UserProvider } = require('../providers/user');
+const { UserProvider } = require('../../providers/user');
 
-const UserController = {
+const AuthController = {
   sign: {
     in: async (req, res) => {
       const { name, email, password } = req.body;
@@ -14,4 +14,4 @@ const UserController = {
     },
   },
 };
-module.exports = { UserController };
+module.exports = { AuthController };
