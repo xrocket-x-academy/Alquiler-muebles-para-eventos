@@ -1,4 +1,4 @@
-const { muebleProvider } = require('../providers/muebleprovider');
+const muebleProvider = require('../providers/muebleprovider');
 
 exports.createMueble = async (req, res) => {
   try {

@@ -1,9 +1,9 @@
-const Mueble = require('../models/mueble');
+const { Mueble } = require('../models/mueble');
 
 const muebleProvider = {
-  createMueble: async (nombre, descripcion, precio) => {
+  createMueble: async (name, description, price) => {
     try {
-      const nuevoMueble = await Mueble.create({ nombre, descripcion, precio });
+      const nuevoMueble = await Mueble.create({ name, description, price });
       return nuevoMueble;
     } catch (error) {
       console.error('Error al crear el mueble:', error);
@@ -12,4 +12,4 @@ const muebleProvider = {
   },
 };
 
-module.exports = { muebleProvider };
+module.exports = muebleProvider;

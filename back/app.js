@@ -14,6 +14,8 @@ const logger = require('./utils/winston.logger');
 // Models:
 const { sequelizeDatabase } = require('./config/files/sequelize.config');
 const { User } = require('./models/user');
+// eslint-disable-next-line no-unused-vars
+const { Mueble } = require('./models/mueble');
 
 // middlewares
 const { logMiddleware } = require('./middleware/log.middleware');
