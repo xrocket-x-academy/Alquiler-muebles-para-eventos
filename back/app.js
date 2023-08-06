@@ -12,8 +12,11 @@ const cors = require('cors');
 const logger = require('./utils/winston.logger');
 
 // Models:
-const models = require('./models');
+const { sequelizeDatabase } = require('./config/files/sequelize.config');
+const { User } = require('./models/user');
 
+// middlewares
+const { logMiddleware } = require('./middleware/log.middleware');
 // Rutes:
 const routes = require('./routes');
 
@@ -76,15 +79,17 @@ if (config.environment === 'production') {
   app.set('trust proxy', 1); // trust first proxy
 }
 
-models.sequelize.authenticate()
-  .then(() => {
+(async () => {
+  try {
+    await sequelizeDatabase.authenticate();
+    await User.sync();
     logger.api.debug('Conexión con la Base de Datos: EXITOSA');
-  })
-  .catch((err) => {
+  } catch (err) {
     logger.api.error('Conexión con la Base de Datos: FALLIDA');
     logger.api.error(err);
-  });
-
+  }
+})();
+app.use(logMiddleware);
 app.use('/', routes);
 module.exports = app;
 

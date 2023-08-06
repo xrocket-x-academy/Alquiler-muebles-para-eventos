@@ -4,18 +4,17 @@ const muebleRouter = require('./muebleroutes');
 const rootPath = require('../middleware/root_path.middleware');
 const errors = require('../middleware/error_handler.middleware');
 
-const app = Express();
+const appRoutes = Express.Router();
 
+// routers
+const { signInRouter } = require('./auth/sign-in');
 // Rutas
-app.use('/muebles', muebleRouter);
-// use=
-app.use('/ping', (req, res) => {
-  res.json({
-    response: 'pong!',
-  });
-});
-app.use('/', rootPath.handler);
-app.use(rootPath.setHeaders);
-app.use(errors.handler);
+appRoutes.use('/muebles', muebleRouter);
 
-module.exports = app;
+appRoutes.use('/auth', signInRouter);
+// use=
+appRoutes.use('/', rootPath.handler);
+appRoutes.use(rootPath.setHeaders);
+appRoutes.use(errors.handler);
+
+module.exports = appRoutes;
