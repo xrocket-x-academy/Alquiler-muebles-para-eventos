@@ -9,7 +9,7 @@ const appRoutes = Express.Router();
 // routers
 const { signInRouter } = require('./auth/sign-in');
 // Rutas
-appRoutes.use('/muebles', muebleRouter);
+appRoutes.use('/mueble', muebleRouter);
 
 appRoutes.use('/auth', signInRouter);
 // use=
