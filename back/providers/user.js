@@ -1,9 +1,9 @@
 const { User } = require('../models/user');
 
 const UserProvider = {
-  create: async ({ name, email, password }) => {
+  create: async ({ usernamme, email, password }) => {
     try {
-      const newUser = User.build({ name, email, password });
+      const newUser = User.build({ usernamme, email, password });
       await newUser.validate();
       await newUser.save();
       return Promise.resolve(newUser);

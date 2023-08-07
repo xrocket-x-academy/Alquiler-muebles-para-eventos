@@ -3,9 +3,9 @@ const { UserProvider } = require('../../providers/user');
 const AuthController = {
   sign: {
     in: async (req, res) => {
-      const { name, email, password } = req.body;
+      const { usernamme, email, password } = req.body;
       try {
-        const user = await UserProvider.create({ name, email, password });
+        const user = await UserProvider.create({ usernamme, email, password });
         res.status(201).send(user);
       } catch (error) {
         console.log(error);
