@@ -85,6 +85,7 @@ if (config.environment === 'production') {
   try {
     await sequelizeDatabase.authenticate();
     await User.sync();
+    await Mueble.sync();
     logger.api.debug('Conexión con la Base de Datos: EXITOSA');
   } catch (err) {
     logger.api.error('Conexión con la Base de Datos: FALLIDA');
@@ -94,8 +95,3 @@ if (config.environment === 'production') {
 app.use(logMiddleware);
 app.use('/', routes);
 module.exports = app;
-
-// rutas para los muebles
-const muebleRoutes = require('./routes/muebleroutes');
-
-app.use('/Alquiler-muebles-para-eventos/back', muebleRoutes);
