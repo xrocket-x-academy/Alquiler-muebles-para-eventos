@@ -22,3 +22,5 @@ Mueble.init({
   sequelize: sequelizeDatabase,
   modelName: 'Mueble',
 });
+
+module.exports = { Mueble };
