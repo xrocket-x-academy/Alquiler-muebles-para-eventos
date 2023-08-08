@@ -89,6 +89,8 @@ if (config.environment === 'production') {
     logger.api.error(err);
   }
 })();
-app.use(logMiddleware);
+if (process.env.ENVIRONMENT === 'development') {
+  app.use(logMiddleware);
+}
 app.use('/', routes);
 module.exports = app;
