@@ -52,6 +52,20 @@ const muebleProvider = {
       return Promise.reject(error);
     }
   },
+  getAll: async ({ limit, offset }) => {
+    const finalLimit = limit || 10;
+    const finalOffset = offset || 0;
+    try {
+      const muebles = await Mueble.findAll({
+        attributes: ['id'],
+        limit: finalLimit,
+        offset: finalOffset,
+      });
+      return Promise.resolve(muebles);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
 };
 
 module.exports = { muebleProvider };

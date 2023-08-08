@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const { muebleProvider } = require('../providers/muebleprovider');
 
 exports.createMueble = async (req, res) => {
@@ -6,7 +7,7 @@ exports.createMueble = async (req, res) => {
     const nuevoMueble = await muebleProvider.create({ name, description, price });
     res.json({ mueble: nuevoMueble, message: 'Creaste un mueble, sos un capo' });
   } catch (error) {
-    res.status(500).json({ message: 'Error al crear el mueble' });
+    res.status(500).json({ message: 'Error creating Mueble' });
   }
 };
 
@@ -38,5 +39,17 @@ exports.deleteMueble = async (req, res) => {
     res.json({ message: 'Mueble deleted' });
   } catch (error) {
     res.status(404).json({ message: 'Mueble not found' });
+  }
+};
+
+exports.getAll = async (req, res) => {
+  try {
+    console.log('Attempting to fetch muebleIds...');
+    const { limit, offset } = req.query;
+    const muebleIds = await muebleProvider.getAll({ limit: parseInt(limit, 10), offset: parseInt(offset, 10) });
+    console.log('Successfully fetched muebleIds:', muebleIds);
+    res.json({ muebleIds });
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching Mueble IDs' });
   }
 };
