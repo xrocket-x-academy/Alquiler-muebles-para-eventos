@@ -10,7 +10,7 @@ class User extends Model {
 }
 
 User.init({
-  usernamme: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false,
   },
