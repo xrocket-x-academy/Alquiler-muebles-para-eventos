@@ -6,7 +6,10 @@ const UserProvider = {
       const newUser = User.build({ username, email, password });
       await newUser.validate();
       await newUser.save();
-      return Promise.resolve(newUser);
+
+      const userFromDb = await this.UserProvider.get.byUsername({ username });
+
+      return Promise.resolve({ user: userFromDb });
     } catch (error) {
       return Promise.reject(new Error(error));
     }
@@ -51,7 +54,14 @@ const UserProvider = {
         user.password = password;
       }
       await user.save();
-      return Promise.resolve(user);
+
+      const userUpdated = await User.findOne({
+        where: {
+          id,
+          isDeleted: false,
+        },
+      });
+      return Promise.resolve({ user: userUpdated });
     } catch (error) {
       return Promise.reject(new Error(error));
     }
@@ -74,14 +84,18 @@ const UserProvider = {
         return Promise.reject(new Error(error));
       }
     },
-    byId: async ({ id }) => {
+    byId: async ({ id }, excludeSensitiveData = true) => {
+      let excludedPropeties = [];
+      if (excludeSensitiveData) {
+        excludedPropeties = ['password', 'email', 'isDeleted'];
+      }
       try {
         const user = await User.findOne({
           where: {
             id,
             isDeleted: false,
           },
-          attributes: { exclude: ['password', 'email'] },
+          attributes: { exclude: [...excludedPropeties] },
         });
         if (!user) {
           return Promise.reject(new Error('User not found'));
@@ -91,13 +105,18 @@ const UserProvider = {
         return Promise.reject(new Error(error));
       }
     },
-    byUsername: async ({ username }) => {
+    byUsername: async ({ username }, excludeSensitiveData = true) => {
+      let excludedPropeties = [];
+      if (excludeSensitiveData) {
+        excludedPropeties = ['password', 'email', 'isDeleted'];
+      }
       try {
         const user = await User.findOne({
           where: {
             username,
             isDeleted: false,
           },
+          attributes: { exclude: [...excludedPropeties] },
         });
         if (!user) {
           return Promise.reject(new Error('User not found'));
@@ -107,12 +126,17 @@ const UserProvider = {
         return Promise.reject(new Error(error));
       }
     },
-    byEmail: async ({ email }) => {
+    byEmail: async ({ email }, excludeSensitiveData = true) => {
+      let excludedPropeties = [];
+      if (excludeSensitiveData) {
+        excludedPropeties = ['password', 'email', 'isDeleted'];
+      }
       try {
         const user = await User.findOne({
           where: {
             email,
           },
+          attributes: { exclude: [...excludedPropeties] },
         });
         if (!user) {
           return Promise.reject(new Error('User not found'));
