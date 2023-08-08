@@ -8,8 +8,10 @@ const appRoutes = Express.Router();
 
 // routers
 const { signInRouter } = require('./auth/sign-in');
+const { UserRouter } = require('./user');
 // Rutas
 appRoutes.use('/auth', signInRouter);
+appRoutes.use('/user', UserRouter);
 // use=
 appRoutes.use('/', rootPath.handler);
 appRoutes.use(rootPath.setHeaders);
