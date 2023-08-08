@@ -44,10 +44,8 @@ exports.deleteMueble = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   try {
-    console.log('Attempting to fetch muebleIds...');
     const { limit, offset } = req.query;
     const muebleIds = await muebleProvider.getAll({ limit: parseInt(limit, 10), offset: parseInt(offset, 10) });
-    console.log('Successfully fetched muebleIds:', muebleIds);
     res.json({ muebleIds });
   } catch (error) {
     res.status(500).json({ message: 'Error fetching Mueble IDs' });
