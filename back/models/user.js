@@ -10,9 +10,13 @@ class User extends Model {
 }
 
 User.init({
-  name: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
+    validate: {
+      len: [1, 32], // max username length is 32 characters
+    },
   },
   email: {
     type: DataTypes.STRING,

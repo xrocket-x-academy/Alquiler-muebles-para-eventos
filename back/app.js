@@ -14,6 +14,8 @@ const logger = require('./utils/winston.logger');
 // Models:
 const { sequelizeDatabase } = require('./config/files/sequelize.config');
 const { User } = require('./models/user');
+// eslint-disable-next-line no-unused-vars
+const { Mueble } = require('./models/mueble');
 
 // middlewares
 const { logMiddleware } = require('./middleware/log.middleware');
@@ -83,12 +85,15 @@ if (config.environment === 'production') {
   try {
     await sequelizeDatabase.authenticate();
     await User.sync();
+    await Mueble.sync();
     logger.api.debug('Conexión con la Base de Datos: EXITOSA');
   } catch (err) {
     logger.api.error('Conexión con la Base de Datos: FALLIDA');
     logger.api.error(err);
   }
 })();
-app.use(logMiddleware);
+if (process.env.ENVIRONMENT === 'development') {
+  app.use(logMiddleware);
+}
 app.use('/', routes);
 module.exports = app;
