@@ -6,12 +6,14 @@ import { throwIfAlreadyLoaded } from './core-import.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomeComponent } from './pages/home/home.component';
+import { LoginComponentComponent } from './pages/login-component/login-component.component';
 
 
 @NgModule({
   declarations: [
     NotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponentComponent
   ],
   imports: [
     CommonModule,
