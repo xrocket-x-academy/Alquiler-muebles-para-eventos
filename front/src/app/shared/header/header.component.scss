@@ -1,0 +1,5 @@
+.border-transparent{
+  &:not(.x-with-border){
+    border-color: transparent !important;
+  }
+}

@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">WAM</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0 gap-3">
+        <li class="nav-item" *ngFor="let navLink of navLinks">
+          <a class="nav-link text-center active border border-3 border-transparent rounded-2" style="--bs-border-opacity: .0;"
+            aria-current="page" routerLink="{{navLink.url}}">{{navLink.name}}</a>
+        </li>
+        <ul *ngIf="!isUserLogged" class="navbar-nav mb-2 mb-lg-0 gap-3">
+          <li *ngFor="let authLink of authLinks" class="nav-item">
+            <a class="nav-link text-center active border border-3 border-transparent rounded-2" aria-current="page"
+              routerLink="{{authLink.url}}"
+              [ngClass]="{'bg-primary text-light': authLink.fillBackground === true, 'border-primary x-with-border': authLink.border === true}">{{authLink.name}}</a>
+          </li>
+        </ul>
+      </ul>
+    </div>
+  </div>
+</nav>
