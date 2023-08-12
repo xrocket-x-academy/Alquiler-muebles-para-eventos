@@ -4,15 +4,10 @@ import { CommonModule } from '@angular/common';
 import { throwIfAlreadyLoaded } from './core-import.guard';
 
 import { HttpClientModule } from '@angular/common/http';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { HomeComponent } from './pages/home/home.component';
 
 
 @NgModule({
-  declarations: [
-    NotFoundComponent,
-    HomeComponent
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     HttpClientModule,
