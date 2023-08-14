@@ -1,12 +1,12 @@
 const { Model, DataTypes } = require('sequelize');
 const { sequelizeDatabase } = require('../config/files/sequelize.config');
 
-class Mueble extends Model {
+class Furniture extends Model {
   static associate() {
     // define association here
   }
 }
-Mueble.init({
+Furniture.init({
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -23,4 +23,4 @@ Mueble.init({
   modelName: 'Mueble',
 });
 
-module.exports = { Mueble };
+module.exports = { Furniture };
