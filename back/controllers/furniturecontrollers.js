@@ -6,8 +6,9 @@ exports.createFurniture = async (req, res) => {
     const {
       name, description, price, stock, startDate, endDate,
     } = req.body;
+    const userId = req.user.id;
     const newFurniture = await furnitureProvider.create({
-      name, description, price, stock, startDate, endDate,
+      name, description, price, stock, startDate, endDate, ownerId: userId,
     });
     res.json({ furniture: newFurniture, message: 'Creaste un mueble, sos un capo' });
   } catch (error) {

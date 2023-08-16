@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const { sequelizeDatabase } = require('../config/files/sequelize.config');
+const { User } = require('./user');
 
 class Furniture extends Model {
   static associate() {
@@ -36,4 +37,5 @@ Furniture.init({
   modelName: 'Furniture',
 });
 
+Furniture.belongsTo(User, { as: 'owner', foreignKey: 'ownerId' });
 module.exports = { Furniture };
