@@ -1,9 +1,13 @@
 const { Furniture } = require('../models/furniture');
 
 const furnitureProvider = {
-  create: async ({ name, description, price }) => {
+  create: async ({
+    name, description, price, stock, startDate, endDate,
+  }) => {
     try {
-      const newFurniture = await Furniture.build({ name, description, price });
+      const newFurniture = await Furniture.build({
+        name, description, price, stock, startDate, endDate,
+      });
       await newFurniture.validate();
       await newFurniture.save();
       return Promise.resolve(newFurniture);
@@ -23,7 +27,9 @@ const furnitureProvider = {
     }
   },
 
-  updateFurniture: async (furnitureId, { name, description, price }) => {
+  updateFurniture: async (furnitureId, {
+    name, description, price, stock, startDate, endDate,
+  }) => {
     try {
       const furniture = await Furniture.findByPk(furnitureId);
       if (!furniture) {
@@ -32,6 +38,9 @@ const furnitureProvider = {
       furniture.name = name;
       furniture.description = description;
       furniture.price = price;
+      furniture.stock = stock;
+      furniture.startDate = startDate;
+      furniture.endDate = endDate;
       await furniture.validate();
       await furniture.save();
       return Promise.resolve(furniture);

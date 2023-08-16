@@ -18,9 +18,22 @@ Furniture.init({
     type: DataTypes.DECIMAL(10, 2),
     allowNull: false,
   },
+  stock: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
+  startDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  endDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
 }, {
   sequelize: sequelizeDatabase,
-  modelName: 'Mueble',
+  modelName: 'Furniture',
 });
 
 module.exports = { Furniture };
