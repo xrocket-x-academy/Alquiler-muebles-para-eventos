@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const { sequelizeDatabase } = require('../config/files/sequelize.config');
 const { User } = require('./user');
+const { RentalDetails } = require('./rentaldetails');
 
 class Furniture extends Model {
   static associate() {
@@ -38,4 +39,5 @@ Furniture.init({
 });
 
 Furniture.belongsTo(User, { as: 'owner', foreignKey: 'ownerId' });
+Furniture.hasMany(RentalDetails, { foreignKey: 'furnitureId' });
 module.exports = { Furniture };
