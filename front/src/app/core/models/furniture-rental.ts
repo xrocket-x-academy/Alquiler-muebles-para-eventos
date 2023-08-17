@@ -1,19 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-furniture-rental',
-//   templateUrl: './furniture-rental.component.html',
-//   styleUrls: ['./furniture-rental.component.scss']
-// })
-// export class FurnitureRentalComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//   }
-
-// }
-
 export class FurnitureRental {
   rentalCode: number;
   idClient: number;
