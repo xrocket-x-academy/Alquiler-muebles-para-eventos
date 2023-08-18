@@ -1,9 +1,12 @@
 const { Model, DataTypes } = require('sequelize');
 const { sequelizeDatabase } = require('../../config/files/sequelize.config');
+const { User } = require('./user');
+const { UserXRole } = require('./user-x-roles');
 
 class Role extends Model {
     static associate() {
         // add associations here
+        this.belongsToMany(User, { through: UserXRole, as: 'UserXRole' });
     }
 }
 Role.init(
@@ -47,3 +50,5 @@ Role.init(
         modelName: 'Role',
     },
 );
+
+module.exports = { Role };

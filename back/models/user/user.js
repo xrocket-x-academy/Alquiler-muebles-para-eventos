@@ -1,9 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const { sequelizeDatabase } = require('../../config/files/sequelize.config');
+const { Role } = require('./roles');
 
 class User extends Model {
     static associate() {
         // add associations here
+        this.hasMany(Role);
     }
 }
 

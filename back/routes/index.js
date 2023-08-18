@@ -7,13 +7,13 @@ const errors = require('../middleware/error_handler.middleware');
 const appRoutes = Express.Router();
 
 // routers
-const { signInRouter } = require('./auth/sign-in');
-const { UserRouter } = require('./user');
+// const { signInRouter } = require('./auth/sign-in');
+// const { UserRouter } = require('./user');
 // Rutas
 appRoutes.use('/mueble', muebleRouter);
 
-appRoutes.use('/auth', signInRouter);
-appRoutes.use('/user', UserRouter);
+// appRoutes.use('/auth', signInRouter);
+// appRoutes.use('/user', UserRouter);
 // use=
 appRoutes.use('/', rootPath.handler);
 appRoutes.use(rootPath.setHeaders);

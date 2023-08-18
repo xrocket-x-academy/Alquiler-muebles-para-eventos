@@ -42,3 +42,5 @@ UserXRole.init(
         modelName: 'UserXRole',
     },
 );
+
+module.exports = { UserXRole };
