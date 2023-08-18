@@ -6,7 +6,11 @@ const { UserXRole } = require('./user-x-roles');
 class Role extends Model {
     static associate() {
         // add associations here
-        this.belongsToMany(User, { through: UserXRole, as: 'UserXRole' });
+        this.belongsToMany(User, {
+            through: UserXRole,
+            as: 'UserXRole',
+            foreignKey: 'role_id',
+        });
     }
 }
 Role.init(
