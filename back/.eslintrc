@@ -11,6 +11,7 @@
             {
                 "props": false
             }
-        ]
+        ],
+        "indent": ["warn", 4]
     }
 }
