@@ -24,7 +24,7 @@ RentalDetails.init({
   },
 }, {
   sequelize: sequelizeDatabase,
-  modelName: RentalDetails,
+  modelName: 'RentalDetails',
 });
 
 RentalDetails.belongsTo(Furniture, { foreignKey: 'furnitureId' });

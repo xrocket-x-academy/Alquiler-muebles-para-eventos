@@ -1,5 +1,6 @@
 const Express = require('express');
 const furnitureRouter = require('./furnitureroutes');
+const furnitureRentalsRouter = require('./furniturerentalsroutes');
 // Middlewares:
 const rootPath = require('../middleware/root_path.middleware');
 const errors = require('../middleware/error_handler.middleware');
@@ -11,6 +12,7 @@ const { signInRouter } = require('./auth/sign-in');
 const { UserRouter } = require('./user');
 // Rutas
 appRoutes.use('/furniture', furnitureRouter);
+appRoutes.use('/furnitureRentals', furnitureRentalsRouter);
 
 appRoutes.use('/auth', signInRouter);
 appRoutes.use('/user', UserRouter);
