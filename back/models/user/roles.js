@@ -1,14 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const { sequelizeDatabase } = require('../../config/files/sequelize.config');
-const { User } = require('./user');
-const { UserXRole } = require('./user-x-roles');
 
-class Role extends Model {
-    static associate() {
-        // add associations here
-        this.belongsToMany(User, { through: UserXRole, as: 'UserXRole' });
-    }
-}
+class Role extends Model {}
 Role.init(
     {
         id: {
@@ -28,13 +21,6 @@ Role.init(
             allowNull: true,
             validate: {
                 len: [1, 200],
-            },
-        },
-        start_date: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            validate: {
-                isDate: true,
             },
         },
         end_date: {

@@ -1,13 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const { sequelizeDatabase } = require('../../config/files/sequelize.config');
-const { Role } = require('./roles');
 
-class User extends Model {
-    static associate() {
-        // add associations here
-        this.hasMany(Role);
-    }
-}
+class User extends Model {}
 
 User.init(
     {
@@ -18,7 +12,6 @@ User.init(
         },
         first_name: {
             type: DataTypes.STRING,
-            unique: true,
             validate: {
                 len: [1, 30],
             },
@@ -26,7 +19,6 @@ User.init(
         },
         last_name: {
             type: DataTypes.STRING,
-            unique: true,
             validate: {
                 len: [1, 30],
             },
@@ -37,6 +29,7 @@ User.init(
             validate: {
                 len: [1, 50],
             },
+            unique: true,
             allowNull: false,
         },
         email: {
@@ -54,14 +47,9 @@ User.init(
             },
             allowNull: false,
         },
-        start_date: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false,
-            allowNull: false,
-        },
         end_date: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false,
+            type: DataTypes.DATE,
+            defaultValue: null,
             allowNull: true,
         },
     },

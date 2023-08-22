@@ -1,11 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const { sequelizeDatabase } = require('../../config/files/sequelize.config');
 
-class UserXRole extends Model {
-    static associate() {
-        // define associations here
-    }
-}
+class UserXRole extends Model {}
 
 UserXRole.init(
     {
@@ -20,13 +16,6 @@ UserXRole.init(
         },
         role_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        start_date: {
-            type: DataTypes.DATE,
-            validate: {
-                isDate: true,
-            },
             allowNull: false,
         },
         end_date: {
