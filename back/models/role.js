@@ -1,41 +1,26 @@
-const {
-  Model, DataTypes,
-} = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const { sequelizeDatabase } = require('../config/files/sequelize.config');
 
-class User extends Model {
+class Role extends Model {
   static associate() {
     // add associations here
   }
 }
 
-User.init({
-  user_id: {
+Role.init({
+  role_id: {
     type: DataTypes.INTEGER.UNSIGNED,
     primaryKey: true,
     autoIncrement: true,
   },
-  first_name: {
+  name: {
     type: DataTypes.STRING(30),
-    allowNull: false,
-  },
-  last_name: {
-    type: DataTypes.STRING(30),
-    allowNull: false,
-  },
-  username: {
-    type: DataTypes.STRING(30),
-    allowNull: false,
     unique: true,
-  },
-  email: {
-    type: DataTypes.STRING(50),
     allowNull: false,
-    unique: true,
   },
-  password: {
+  description: {
     type: DataTypes.STRING(200),
-    allowNull: false,
+    allowNull: true,
   },
   start_date: {
     type: DataTypes.DATE,
@@ -47,7 +32,7 @@ User.init({
   },
 }, {
   sequelize: sequelizeDatabase,
-  modelName: 'Users',
+  modelName: 'Roles',
 });
 
-module.exports = { User };
+module.exports = { Role };

@@ -16,6 +16,8 @@ const { sequelizeDatabase } = require('./config/files/sequelize.config');
 const { User } = require('./models/user');
 // eslint-disable-next-line no-unused-vars
 const { Mueble } = require('./models/mueble');
+const { Role } = require('./models/indexDB');
+const { RoleXUser } = require('./models/indexDB');
 
 // middlewares
 const { logMiddleware } = require('./middleware/log.middleware');
@@ -84,8 +86,16 @@ if (config.environment === 'production') {
 (async () => {
   try {
     await sequelizeDatabase.authenticate();
+    // USER MODULE
+    await Role.sync();
     await User.sync();
+    await RoleXUser.sync();
+
+    // FURNITURE MODULE
     await Mueble.sync();
+
+    // RENTALS MODULE
+
     logger.api.debug('Conexión con la Base de Datos: EXITOSA');
   } catch (err) {
     logger.api.error('Conexión con la Base de Datos: FALLIDA');
