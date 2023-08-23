@@ -46,6 +46,7 @@ Furniture.init({
     },
     endDate: {
         type: DataTypes.DATE,
+        defaultValue: null,
         allowNull: true,
     },
 }, {
