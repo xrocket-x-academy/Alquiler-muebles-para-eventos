@@ -1,60 +1,81 @@
-const { UserProvider } = require('../../providers/user');
+const { userProvider } = require('../../providers/user');
 
-const UserController = {
-  get: {
-    all: async (req, res) => {
-      try {
-        const limit = req.query.limit ? parseInt(req.query.limit, 10) : 10;
-        const offset = req.query.offset ? parseInt(req.query.offset, 10) : 0;
-
-        const users = await UserProvider.get.all({ limit, offset });
-        res.send(users);
-      } catch (error) {
-        res.send(error);
-      }
+const userController = {
+    post: async (req, res) => {
+        const { first_name, last_name, username, email, password } = req.body;
+        try {
+            const user = await userProvider.create({
+                first_name,
+                last_name,
+                username,
+                email,
+                password,
+            });
+            res.status(201).json({ user });
+        } catch (error) {
+            console.log(error);
+            res.status(500).send(error);
+        }
     },
-    byId: async (req, res) => {
-      try {
-        const { id } = req.params;
-        const user = await UserProvider.get.byId({ id });
-        res.send(user);
-      } catch (error) {
-        res.send(error);
-      }
+    get: {
+        byId: async (req, res) => {
+            const { id } = req.params;
+            try {
+                const user = await userProvider.get.byId(id);
+                res.status(200).json({ user });
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        all: async (req, res) => {
+            let { offset, limit } = req.query;
+            // eslint-disable-next-line no-unused-expressions
+            offset ? (offset = parseInt(offset, 10)) : (offset = 0);
+            // eslint-disable-next-line no-unused-expressions
+            limit ? (limit = parseInt(limit, 10)) : (limit = 10);
+            try {
+                const users = await userProvider.get.all(offset, limit);
+                return res.status(200).json({ users });
+            } catch (error) {
+                return res.status(500).send(error);
+            }
+        },
+        byUsername: async (req, res) => {
+            const { username } = req.params;
+            try {
+                const user = await userProvider.get.byUsername(username);
+                if (!user) {
+                    return res.status(404).send();
+                }
+                return res.status(200).json({ user });
+            } catch (error) {
+                return res.status(500).send(error);
+            }
+        },
     },
-    byUsername: async (req, res) => {
-      try {
-        const { username } = req.params;
-        const user = await UserProvider.get.byUsername({ username });
-        res.send(user);
-      } catch (error) {
-        res.send(error);
-      }
+    delete: {
+        byId: async (req, res) => {
+            const { id } = req.params;
+            try {
+                await userProvider.delete.byId(id);
+                return res.status(200).send();
+            } catch (error) {
+                return res.status(500).send(error);
+            }
+        },
     },
-  },
-  put: {
-    byId: async (req, res) => {
-      try {
-        const { id } = req.params;
-        const { username, email, password } = req.body;
-        const user = await UserProvider.update({ id }, { username, email, password });
-        res.send(user);
-      } catch (error) {
-        res.send(error);
-      }
+    assosiate: {
+        role: async (req, res) => {
+            const { userId, roleId } = req.body;
+            try {
+                await userProvider.assosiate.role(userId, roleId);
+                return res.status(200).send();
+            } catch (error) {
+                console.log(error);
+                return res.status(500).send(error);
+            }
+        },
     },
-  },
-  delete: {
-    byId: async (req, res) => {
-      try {
-        const { id } = req.params;
-        const user = await UserProvider.delete({ id });
-        res.send(user);
-      } catch (error) {
-        res.send(error);
-      }
-    },
-  },
 };
 
-module.exports = { UserController };
+module.exports = { userController };
