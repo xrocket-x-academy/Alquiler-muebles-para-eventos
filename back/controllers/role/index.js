@@ -7,7 +7,7 @@ const roleController = {
         all: async (req, res) => {
             try {
                 const roles = await roleProvider.get.all();
-                return ApiResponse.success(res, HttpsStatusCodes.FOUND, roles);
+                return ApiResponse.success(res, HttpsStatusCodes.OK, roles);
             } catch (error) {
                 return ApiResponse.error(
                     res,
@@ -22,7 +22,7 @@ const roleController = {
                 if (!role) {
                     return ApiResponse.error(res, HttpsStatusCodes.NOT_FOUND);
                 }
-                return ApiResponse.success(res, HttpsStatusCodes.FOUND, role);
+                return ApiResponse.success(res, HttpsStatusCodes.OK, role);
             } catch (error) {
                 return ApiResponse.error(
                     res,

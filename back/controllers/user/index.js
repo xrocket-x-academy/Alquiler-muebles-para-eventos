@@ -6,17 +6,20 @@ const userController = {
     post: async (req, res) => {
         const { first_name, last_name, username, email, password } = req.body;
         try {
-            const user = await userProvider.create({
+            await userProvider.create({
                 first_name,
                 last_name,
                 username,
                 email,
                 password,
             });
-            res.status(201).json({ user });
+            return ApiResponse.success(res, HttpsStatusCodes.CREATED);
         } catch (error) {
             console.log(error);
-            res.status(500).send(error);
+            return ApiResponse.error(
+                res,
+                HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+            );
         }
     },
     get: {
@@ -27,7 +30,7 @@ const userController = {
                 if (!user) {
                     return ApiResponse.error(res, HttpsStatusCodes.NOT_FOUND);
                 }
-                return ApiResponse.success(res, HttpsStatusCodes.FOUND, user);
+                return ApiResponse.success(res, HttpsStatusCodes.OK, user);
             } catch (error) {
                 return ApiResponse.error(
                     res,
@@ -43,7 +46,7 @@ const userController = {
             limit ? (limit = parseInt(limit, 10)) : (limit = 10);
             try {
                 const users = await userProvider.get.all(offset, limit);
-                return ApiResponse.success(res, HttpsStatusCodes.FOUND, users);
+                return ApiResponse.success(res, HttpsStatusCodes.OK, users);
             } catch (error) {
                 return ApiResponse.error(
                     res,
@@ -63,7 +66,7 @@ const userController = {
                         );
                     }
                 }
-                return ApiResponse.success(res, HttpsStatusCodes.FOUND, user);
+                return ApiResponse.success(res, HttpsStatusCodes.OK, user);
             } catch (error) {
                 return ApiResponse.error(
                     res,
