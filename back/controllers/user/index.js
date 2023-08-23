@@ -1,4 +1,6 @@
 const { userProvider } = require('../../providers/user');
+const { HttpsStatusCodes } = require('../../utils/http-status-codes');
+const { ApiResponse } = require('../../utils/json-response');
 
 const userController = {
     post: async (req, res) => {
@@ -22,9 +24,15 @@ const userController = {
             const { id } = req.params;
             try {
                 const user = await userProvider.get.byId(id);
-                res.status(200).json({ user });
+                if (!user) {
+                    return ApiResponse.error(res, HttpsStatusCodes.NOT_FOUND);
+                }
+                return ApiResponse.success(res, HttpsStatusCodes.FOUND, user);
             } catch (error) {
-                console.log(error);
+                return ApiResponse.error(
+                    res,
+                    HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+                );
             }
         },
         all: async (req, res) => {
@@ -35,9 +43,12 @@ const userController = {
             limit ? (limit = parseInt(limit, 10)) : (limit = 10);
             try {
                 const users = await userProvider.get.all(offset, limit);
-                return res.status(200).json({ users });
+                return ApiResponse.success(res, HttpsStatusCodes.FOUND, users);
             } catch (error) {
-                return res.status(500).send(error);
+                return ApiResponse.error(
+                    res,
+                    HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+                );
             }
         },
         byUsername: async (req, res) => {
@@ -45,11 +56,19 @@ const userController = {
             try {
                 const user = await userProvider.get.byUsername(username);
                 if (!user) {
-                    return res.status(404).send();
+                    if (!user) {
+                        return ApiResponse.error(
+                            res,
+                            HttpsStatusCodes.NOT_FOUND,
+                        );
+                    }
                 }
-                return res.status(200).json({ user });
+                return ApiResponse.success(res, HttpsStatusCodes.FOUND, user);
             } catch (error) {
-                return res.status(500).send(error);
+                return ApiResponse.error(
+                    res,
+                    HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+                );
             }
         },
     },
@@ -58,9 +77,12 @@ const userController = {
             const { id } = req.params;
             try {
                 await userProvider.delete.byId(id);
-                return res.status(200).send();
+                return ApiResponse.success(res, HttpsStatusCodes.OK);
             } catch (error) {
-                return res.status(500).send(error);
+                return ApiResponse.error(
+                    res,
+                    HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+                );
             }
         },
     },
@@ -69,10 +91,12 @@ const userController = {
             const { userId, roleId } = req.body;
             try {
                 await userProvider.assosiate.role(userId, roleId);
-                return res.status(200).send();
+                return ApiResponse.success(res, HttpsStatusCodes.OK);
             } catch (error) {
-                console.log(error);
-                return res.status(500).send(error);
+                return ApiResponse.error(
+                    res,
+                    HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+                );
             }
         },
     },
