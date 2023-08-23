@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
-const { sequelizeDatabase } = require('../config/files/sequelize.config');
+const { sequelizeDatabase } = require('../../config/files/sequelize.config');
 const { RentalDetails } = require('./rentaldetails');
+const { User } = require('../user');
 // aca voy a necesitar un clientId por parte de User
 
 class FurnitureRentals extends Model {
@@ -18,7 +19,15 @@ FurnitureRentals.init({
             key: 'rentalCode',
         },
     },
-    // clientId a desarrollar aca
+    // USAR ID DE USUARIO PARA CLIENT ID
+    clientId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: User,
+            key: 'id',
+        },
+    },
     amount: {
         type: DataTypes.DECIMAL,
         allowNull: false,
@@ -41,5 +50,4 @@ FurnitureRentals.init({
     modelName: 'FurnitureRentals',
 });
 
-FurnitureRentals.belongsTo(RentalDetails, { foreignKey: 'rentalCode' });
 module.exports = { FurnitureRentals };

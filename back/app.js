@@ -15,8 +15,8 @@ const logger = require('./utils/winston.logger');
 const { sequelizeDatabase } = require('./config/files/sequelize.config');
 const { User } = require('./models/user');
 
-const { Furniture } = require('./models/furniture');
-const { FurnitureRentals } = require('./models/furniturerentals');
+const { Furniture } = require('./models/furniture/furniture');
+const { FurnitureRentals } = require('./models/furniture/furniturerentals');
 const { Role } = require('./models/user');
 
 // middlewares
@@ -89,6 +89,7 @@ if (config.environment === 'production') {
 (async () => {
     try {
         await sequelizeDatabase.authenticate();
+        await sequelizeDatabase.sync({ force: true });
         await User.sync();
         await Furniture.sync();
         await FurnitureRentals.sync();

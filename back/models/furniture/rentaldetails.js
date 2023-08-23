@@ -1,7 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const { sequelizeDatabase } = require('../config/files/sequelize.config');
-const { Furniture } = require('./furniture');
-const { FurnitureRentals } = require('./furniturerentals');
+const { sequelizeDatabase } = require('../../config/files/sequelize.config');
 
 class RentalDetails extends Model {
     static associate() {
@@ -27,6 +25,4 @@ RentalDetails.init({
     modelName: 'RentalDetails',
 });
 
-RentalDetails.belongsTo(Furniture, { foreignKey: 'furnitureId' });
-RentalDetails.hasMany(FurnitureRentals, { foreignKey: 'rentalCode' });
 module.exports = { RentalDetails };

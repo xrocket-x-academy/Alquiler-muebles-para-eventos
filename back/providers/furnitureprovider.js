@@ -1,4 +1,4 @@
-const { Furniture } = require('../models/furniture');
+const { Furniture } = require('../models/furniture/furniture');
 
 const furnitureProvider = {
     create: async ({
