@@ -1,60 +1,108 @@
-const { UserProvider } = require('../../providers/user');
+const { userProvider } = require('../../providers/user');
+const { HttpsStatusCodes } = require('../../utils/http-status-codes');
+const { ApiResponse } = require('../../utils/json-response');
 
-const UserController = {
-  get: {
-    all: async (req, res) => {
-      try {
-        const limit = req.query.limit ? parseInt(req.query.limit, 10) : 10;
-        const offset = req.query.offset ? parseInt(req.query.offset, 10) : 0;
-
-        const users = await UserProvider.get.all({ limit, offset });
-        res.send(users);
-      } catch (error) {
-        res.send(error);
-      }
+const userController = {
+    post: async (req, res) => {
+        const { first_name, last_name, username, email, password } = req.body;
+        try {
+            await userProvider.create({
+                first_name,
+                last_name,
+                username,
+                email,
+                password,
+            });
+            return ApiResponse.success(res, HttpsStatusCodes.CREATED);
+        } catch (error) {
+            console.log(error);
+            return ApiResponse.error(
+                res,
+                HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+            );
+        }
     },
-    byId: async (req, res) => {
-      try {
-        const { id } = req.params;
-        const user = await UserProvider.get.byId({ id });
-        res.send(user);
-      } catch (error) {
-        res.send(error);
-      }
+    get: {
+        byId: async (req, res) => {
+            const { id } = req.params;
+            try {
+                const user = await userProvider.get.byId(id);
+                if (!user) {
+                    return ApiResponse.error(res, HttpsStatusCodes.NOT_FOUND);
+                }
+                return ApiResponse.success(res, HttpsStatusCodes.OK, user);
+            } catch (error) {
+                return ApiResponse.error(
+                    res,
+                    HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+                );
+            }
+        },
+        all: async (req, res) => {
+            let { offset, limit } = req.query;
+            // eslint-disable-next-line no-unused-expressions
+            offset ? (offset = parseInt(offset, 10)) : (offset = 0);
+            // eslint-disable-next-line no-unused-expressions
+            limit ? (limit = parseInt(limit, 10)) : (limit = 10);
+            try {
+                const users = await userProvider.get.all(offset, limit);
+                return ApiResponse.success(res, HttpsStatusCodes.OK, users);
+            } catch (error) {
+                return ApiResponse.error(
+                    res,
+                    HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+                );
+            }
+        },
+        byUsername: async (req, res) => {
+            const { username } = req.params;
+            try {
+                const user = await userProvider.get.byUsername(username);
+                if (!user) {
+                    if (!user) {
+                        return ApiResponse.error(
+                            res,
+                            HttpsStatusCodes.NOT_FOUND,
+                        );
+                    }
+                }
+                return ApiResponse.success(res, HttpsStatusCodes.OK, user);
+            } catch (error) {
+                return ApiResponse.error(
+                    res,
+                    HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+                );
+            }
+        },
     },
-    byUsername: async (req, res) => {
-      try {
-        const { username } = req.params;
-        const user = await UserProvider.get.byUsername({ username });
-        res.send(user);
-      } catch (error) {
-        res.send(error);
-      }
+    delete: {
+        byId: async (req, res) => {
+            const { id } = req.params;
+            try {
+                await userProvider.delete.byId(id);
+                return ApiResponse.success(res, HttpsStatusCodes.OK);
+            } catch (error) {
+                return ApiResponse.error(
+                    res,
+                    HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+                );
+            }
+        },
     },
-  },
-  put: {
-    byId: async (req, res) => {
-      try {
-        const { id } = req.params;
-        const { username, email, password } = req.body;
-        const user = await UserProvider.update({ id }, { username, email, password });
-        res.send(user);
-      } catch (error) {
-        res.send(error);
-      }
+    assosiate: {
+        role: async (req, res) => {
+            const { userId, roleId } = req.body;
+            try {
+                await userProvider.assosiate.role(userId, roleId);
+                return ApiResponse.success(res, HttpsStatusCodes.OK);
+            } catch (error) {
+                return ApiResponse.error(
+                    res,
+                    HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+                );
+            }
+        },
     },
-  },
-  delete: {
-    byId: async (req, res) => {
-      try {
-        const { id } = req.params;
-        const user = await UserProvider.delete({ id });
-        res.send(user);
-      } catch (error) {
-        res.send(error);
-      }
-    },
-  },
 };
 
-module.exports = { UserController };
+module.exports = { userController };

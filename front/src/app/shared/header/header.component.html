@@ -1,0 +1,55 @@
+<header>
+  <nav>
+    <a routerLink="{{ logoLink.url }}" id="logo">
+      <img src="{{ logoLink.logoUrl }}" alt="{{ logoLink.name }}" />
+    </a>
+    <section class="nav-links">
+      <ul>
+        <li *ngFor="let navItem of navLinks">
+          <a routerLink="{{ navItem.url }}">{{ navItem.name }}</a>
+        </li>
+      </ul>
+      <ul *ngIf="!userInfo.isUserLogged">
+        <li *ngFor="let authLink of authLinks">
+          <a
+            routerLink="{{ authLink.url }}"
+            [class.x-border]="authLink.border"
+            [class.x-background]="authLink.fillBackground"
+            >{{ authLink.name }}</a
+          >
+        </li>
+      </ul>
+      <section *ngIf="userInfo.isUserLogged" id="user-profile-nav">
+        <a routerLink="{{ userInfo.profileUrl }}">
+          <img
+            src="{{ userInfo.profileImgUrl }}"
+            alt="{{ userInfo.username }}"
+          />
+        </a>
+        <div class="dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            (click)="toggleDropDown()"
+          >
+            My account
+          </a>
+          <ul
+            class="dropdown-menu flex flex-column"
+            *ngIf="DropDownState"
+            id="x-dropdown"
+          >
+            <li *ngFor="let navLink of userInfo.navLinks">
+              <a class="dropdown-item" routerLink="{{ navLink.url }}">{{
+                navLink.name
+              }}</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </section>
+  </nav>
+</header>
