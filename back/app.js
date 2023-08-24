@@ -103,6 +103,6 @@ if (config.environment === 'production') {
 if (process.env.ENVIRONMENT === 'development') {
     app.use(logMiddleware);
 }
-app.use('/', routes);
+app.use('/api', routes);
 
 module.exports = app;
