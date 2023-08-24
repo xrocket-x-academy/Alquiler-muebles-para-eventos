@@ -89,7 +89,7 @@ if (config.environment === 'production') {
 (async () => {
     try {
         await sequelizeDatabase.authenticate();
-        await sequelizeDatabase.sync({ force: true });
+        await sequelizeDatabase.sync();
         await User.sync();
         await Furniture.sync();
         await FurnitureRentals.sync();
