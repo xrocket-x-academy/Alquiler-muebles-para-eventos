@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-const { furnitureProvider } = require('../providers/furnitureprovider');
+const { furnitureProvider } = require('../../providers/furniture/furnitureprovider');
 
 exports.createFurniture = async (req, res) => {
     try {

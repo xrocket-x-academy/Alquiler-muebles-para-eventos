@@ -1,4 +1,4 @@
-const { furnitureRentalsProvider } = require('../providers/furniturerentals');
+const { furnitureRentalsProvider } = require('../../providers/furniture/furniturerentals');
 
 exports.createFurnitureRental = async (req, res) => {
     try {
