@@ -1,0 +1,98 @@
+@import "../../../styles.scss";
+
+$header-height: 80px;
+header {
+  width: 100%;
+  height: $header-height;
+  border-bottom: 2px solid $gray-1000;
+  padding: 10px 40px;
+  nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    #logo {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      img {
+        height: 100%;
+        max-height: 32px;
+      }
+    }
+    .nav-links {
+      display: flex;
+      width: 100%;
+      gap: 16px;
+      justify-content: flex-end;
+      align-items: center;
+      ul {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        li {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          a {
+            border-radius: 9999px;
+            padding: 7px 16px;
+            color: $gray-3700;
+            transition: 0.5s;
+            border: 2px solid transparent;
+            &:hover {
+              color: $gray-3300;
+              &.x-background {
+                filter: brightness(90%);
+              }
+              &.x-border {
+                background-color: $gray-500;
+              }
+            }
+            &.x-background {
+              background-color: $scarletRed-300;
+              color: $gray-100;
+            }
+            &.x-border {
+              border-color: $scarletRed-300;
+            }
+          }
+        }
+      }
+    }
+    #user-profile-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 10px;
+      a {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 7px;
+        height: 100%;
+        img {
+          height: 32px;
+          width: 32px;
+          object-fit: cover;
+          object-position: center;
+          border-radius: 100%;
+        }
+      }
+      #x-dropdown{
+        right: -25px;
+        top: 35px;
+        gap: 0;
+        li{
+          width: 100%;
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}
