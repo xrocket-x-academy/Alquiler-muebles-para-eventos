@@ -14,8 +14,10 @@ const logger = require('./utils/winston.logger');
 // Models:
 const { sequelizeDatabase } = require('./config/files/sequelize.config');
 const { User } = require('./models/user');
+
+const { Furniture } = require('./models/furniture/furniture');
+const { FurnitureRentals } = require('./models/furniture/furniturerentals');
 const { Role } = require('./models/user');
-const { Mueble } = require('./models/mueble');
 
 // middlewares
 const { logMiddleware } = require('./middleware/log.middleware');
@@ -89,11 +91,10 @@ if (config.environment === 'production') {
         await sequelizeDatabase.authenticate();
         await sequelizeDatabase.sync();
         await User.sync();
-        await Mueble.sync();
+        await Furniture.sync();
+        await FurnitureRentals.sync();
         await Role.sync();
-
         await seedRoles();
-
         logger.api.debug('Conexión con la Base de Datos: EXITOSA');
     } catch (err) {
         logger.api.error('Conexión con la Base de Datos: FALLIDA');
