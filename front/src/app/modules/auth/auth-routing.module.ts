@@ -6,12 +6,12 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
 
 const routes: Routes = [
   {
-    path: 'sign-up',
+    path: 'register',
     component: SignUpComponent,
     pathMatch: 'full',
   },
   {
-    path: 'sign-in',
+    path: 'login',
     component: SignInComponent,
     pathMatch: 'full',
   },

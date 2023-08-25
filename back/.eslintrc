@@ -11,6 +11,9 @@
             {
                 "props": false
             }
-        ]
+        ],
+        "camelcase":"off",
+        "object-curly-newline": "off",
+        "indent": ["warn", 4]
     }
 }
