@@ -68,7 +68,7 @@ const userController = {
         role: async (req, res) => {
             const { userId, roleId } = req.body;
             try {
-                await userProvider.assosiate.role(userId, roleId);
+                await userProvider.assosiate.role.add(userId, roleId);
                 return res.status(200).send();
             } catch (error) {
                 console.log(error);

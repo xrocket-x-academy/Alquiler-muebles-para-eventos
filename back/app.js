@@ -87,6 +87,7 @@ if (config.environment === 'production') {
 (async () => {
     try {
         await sequelizeDatabase.authenticate();
+        await sequelizeDatabase.sync({ force: true });
         await User.sync();
         await Mueble.sync();
         await Role.sync();

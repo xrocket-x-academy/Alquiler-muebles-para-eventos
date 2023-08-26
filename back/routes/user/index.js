@@ -38,4 +38,5 @@ UserRouter.post(
     validateValidationChain,
     userController.assosiate.role,
 );
+UserRouter.post('/', userController.post);
 module.exports = { UserRouter };
