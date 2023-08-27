@@ -10,7 +10,13 @@ const {
 
 const authRouter = express.Router();
 
-authRouter.post('/sign-in', signInController);
+authRouter.post(
+    '/sign-in',
+    body('username').notEmpty().isString().isLength({ min: 1, max: 50 }),
+    body('password').notEmpty().isString().isLength({ min: 14, max: 16 }),
+    validateValidationChain,
+    signInController,
+);
 authRouter.post(
     '/sign-up',
     body('first_name').notEmpty().isString().isLength({ min: 1, max: 30 }),
