@@ -1,17 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-// import * as moment from 'moment';
-
-interface User {
-    username: string;
-    email: string;
-    password: string;
-}
-
-interface Session {
-    token: string;
-    expiresIn: string;
-}
+import { User } from "../models/user";
+import { Session } from "../models/session";
 
 @Injectable()
 export abstract class IAuthService {
@@ -50,7 +40,7 @@ export abstract class IAuthService {
      */
     abstract logout(): void;
     
-    abstract getExpiration(): unknown; // IMPORTAR MOMENT
+    abstract getExpiration():  moment.Moment;
 
     abstract isLoggedIn(): boolean;
     abstract isLoggedOut(): boolean;
