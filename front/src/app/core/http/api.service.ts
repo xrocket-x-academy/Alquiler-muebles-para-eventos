@@ -34,8 +34,7 @@ export class ApiService {
    * through this service.
    */
   public setDefaultHeaders(): void {
-    this.httpHeaders = new HttpHeaders();
-    this.httpHeaders
+    this.httpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json');
   }
@@ -177,13 +176,19 @@ export class ApiService {
    * returns the response body as a JSON object.
    *
    * @param url The endpoint URL.
+   * @param params The HTTP DELETE parameters
    *
    * @return An `Observable` of the response, with the response body of type `Object`.
    */
-  public delete<T>(url: string): Observable<T> {
+  public delete<T>(url: string, params?: HttpParams): Observable<T> {
     const opts = {
       headers: this.httpHeaders,
+      params: (params ? params : null) as HttpParams,
     };
+
+    if (params) {
+      opts.params = params;
+    }
 
     return this.http.delete<T>(this.apiUrl + url, opts);
   }
