@@ -1,22 +1,33 @@
 const { roleProvider } = require('../../providers');
+const { HttpsStatusCodes } = require('../../utils/http-status-codes');
+const { ApiResponse } = require('../../utils/json-response');
 
 const roleController = {
     get: {
         all: async (req, res) => {
             try {
                 const roles = await roleProvider.get.all();
-                res.status(200).json(roles);
+                return ApiResponse.success(res, HttpsStatusCodes.OK, roles);
             } catch (error) {
-                res.status(500).json(error);
+                return ApiResponse.error(
+                    res,
+                    HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+                );
             }
         },
         byId: async (req, res) => {
             const { id } = req.params;
             try {
                 const role = await roleProvider.get.byId(id);
-                return res.status(200).json(role);
+                if (!role) {
+                    return ApiResponse.error(res, HttpsStatusCodes.NOT_FOUND);
+                }
+                return ApiResponse.success(res, HttpsStatusCodes.OK, role);
             } catch (error) {
-                return res.status(500).json(error);
+                return ApiResponse.error(
+                    res,
+                    HttpsStatusCodes.INTERNAL_SERVER_ERROR,
+                );
             }
         },
     },
