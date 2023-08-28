@@ -34,8 +34,7 @@ export class ApiService {
    * through this service.
    */
   public setDefaultHeaders(): void {
-    this.httpHeaders = new HttpHeaders();
-    this.httpHeaders
+    this.httpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json');
   }
