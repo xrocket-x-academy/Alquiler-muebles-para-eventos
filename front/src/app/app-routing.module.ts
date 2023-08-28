@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { FurnitureFormComponent } from './furniture/furniture-form/furniture-form.component';
 const routes: Routes = [
 
   {
@@ -13,6 +13,7 @@ const routes: Routes = [
     redirectTo: 'auth',
     pathMatch: 'full'
   },
+  { path: 'furniture-form', component: FurnitureFormComponent },
 ];
 
 @NgModule({
