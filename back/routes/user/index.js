@@ -1,9 +1,13 @@
 const express = require('express');
 const { param, body } = require('express-validator');
+
+const { validateJwt } = require('../../middleware/jwt.middleware');
+
 const { userController } = require('../../controllers/user');
 const {
     validateValidationChain,
 } = require('../../utils/validate-validationchain');
+const { authenticationMiddleware } = require('../../middleware/authentication');
 
 const UserRouter = express.Router();
 
@@ -28,6 +32,8 @@ UserRouter.delete(
     '/:id',
     param('id').notEmpty(),
     validateValidationChain,
+    validateJwt,
+    authenticationMiddleware,
     userController.delete.byId,
 );
 // post
@@ -36,6 +42,8 @@ UserRouter.post(
     body('userId').notEmpty().isInt(),
     body('roleId').notEmpty().isInt(),
     validateValidationChain,
+    authenticationMiddleware,
+    validateJwt,
     userController.assosiate.role,
 );
 module.exports = { UserRouter };

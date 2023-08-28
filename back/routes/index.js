@@ -19,6 +19,7 @@ appRoutes.use('/furnitureRentals', furnitureRentalsRouter);
 appRoutes.use('/auth', authRouter);
 appRoutes.use('/user', UserRouter);
 appRoutes.use('/role', roleRouter);
+
 // use
 appRoutes.use('/', rootPath.handler);
 appRoutes.use(rootPath.setHeaders);
