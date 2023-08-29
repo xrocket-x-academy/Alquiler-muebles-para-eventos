@@ -4,15 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { CardFurnitureComponent } from './features/furniture/card-furniture/card-furniture.component';
 import { CoreModule } from './core/core.module';
-
-
+import { ListFurnitureComponent } from './features/furniture/list-furniture/list-furniture.component';
+import { CardFurnitureComponent } from './features/furniture/card-furniture/card-furniture.component';
+import { DetailsFurnitureComponent } from './features/furniture/details-furniture/details-furniture.component';
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    CardFurnitureComponent
+    ListFurnitureComponent,
+    CardFurnitureComponent,
+    DetailsFurnitureComponent
   ],
   imports: [
     BrowserModule,
@@ -23,4 +25,5 @@ import { CoreModule } from './core/core.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
 
