@@ -8,12 +8,13 @@ const routes: Routes = [
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule),
     pathMatch: 'prefix'
   },
+  { path: 'furniture-form', component: FurnitureFormComponent },
+
   {
     path: '**',
     redirectTo: 'auth',
     pathMatch: 'full'
   },
-  { path: 'furniture-form', component: FurnitureFormComponent },
 ];
 
 @NgModule({
