@@ -1,4 +1,4 @@
-<a [routerLink]="['/details-furniture', furni.id]" target="_blank"></a>
+<a [routerLink]="['/details-furniture', furni]" target= "_blank">
 
  <div id="{{furni.id}}" class="carousel slide ml-1" data-ride="carousel">
 
@@ -27,24 +27,3 @@
   </div>
 </div>
 
-
-<!--
-<div *ngIf="furni">
-  <div id="carousel-{{furni.id}}" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div *ngFor="let image of images; let i = index" [ngClass]="{'carousel-item': true, 'active': i === 0}">
-        <img [src]="image" class="d-block w-100" alt="Imagen">
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carousel-{{furni.id}}" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carousel-{{furni.id}}" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </a>
-  </div>
-  <p class="fs-9 lh-1 mb-0 small">{{furni.name}}</p>
-  <p class="fs-9 lh-1 mb-0 small">Precio: {{furni.price}}</p>
-</div> -->

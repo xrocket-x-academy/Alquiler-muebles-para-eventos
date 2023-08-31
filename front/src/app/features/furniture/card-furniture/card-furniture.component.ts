@@ -7,7 +7,6 @@ import { Furniture } from 'src/app/core/models/furniture';
   styleUrls: ['./card-furniture.component.scss']
 })
 
-
 export class CardFurnitureComponent {
   @Input() furni: Furniture = new Furniture(
     0,
@@ -23,11 +22,4 @@ export class CardFurnitureComponent {
 }
 
 
-
-// export class CardFurnitureComponent{
-
-// @Input() furniture1: Furniture= new Furniture(1, 1, "Living", "Sillones 3 cuerpos de gabardina blanca",
-// 5, 9000, new Date(2023, 7, 2), new Date(2023, 7, 23));
-
-// }
 
