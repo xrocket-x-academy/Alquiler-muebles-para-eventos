@@ -8,3 +8,5 @@ rentalDetailsRouter.post('/rental-details', rentalDetailsControllers.createRenta
 rentalDetailsRouter.get('/rental-details/:rentalCode', rentalDetailsControllers.getRentalDetailsByRentalCode);
 rentalDetailsRouter.put('/rental-details/:rentalCode', rentalDetailsControllers.updateRentalDetailsByRentalCode);
 rentalDetailsRouter.delete('/rental-details/:rentalCode', rentalDetailsControllers.deleteRentalDetailsByRentalCode);
+
+module.exports = rentalDetailsRouter;
