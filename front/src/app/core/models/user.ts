@@ -5,8 +5,8 @@ export class User {
     username: string;
     email: string;
     password: string;
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     startDate: Date;
     endDate: Date;
     roles: Array<Role>;
@@ -22,8 +22,8 @@ export class User {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.first_name = firstName;
+        this.last_name = lastName;
     }
 
 
