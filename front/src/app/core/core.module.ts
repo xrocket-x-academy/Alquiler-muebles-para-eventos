@@ -6,6 +6,8 @@ import { throwIfAlreadyLoaded } from './core-import.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { IAuthService } from './interfaces/auth-service.interface';
 import { AuthService } from './services/auth.service';
+import { ISessionService } from './interfaces/session-service.interface';
+import { SessionService } from './services/session.service';
 
 
 @NgModule({
@@ -15,9 +17,10 @@ import { AuthService } from './services/auth.service';
     HttpClientModule
   ],
   exports: [],
-  providers: [{
-    provide: IAuthService, useClass: AuthService
-  }]
+  providers: [
+    { provide: IAuthService, useClass: AuthService},
+    { provide: ISessionService, useClass: SessionService }
+  ]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
