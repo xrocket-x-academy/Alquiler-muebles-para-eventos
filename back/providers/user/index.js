@@ -19,6 +19,30 @@ const userProvider = {
             return Promise.reject();
         }
     },
+    checkAvailabilityOf: {
+        username: async (username) => {
+            const user = await User.findOne({
+                where: {
+                    username,
+                },
+            });
+            if (user) {
+                return false;
+            }
+            return true;
+        },
+        email: async (email) => {
+            const user = await User.findOne({
+                where: {
+                    email,
+                },
+            });
+            if (user) {
+                return false;
+            }
+            return true;
+        },
+    },
     get: {
         byId: async (id) => {
             try {
@@ -46,6 +70,20 @@ const userProvider = {
                 const user = await User.findOne({
                     where: {
                         username,
+                        end_date: null,
+                    },
+                });
+                return Promise.resolve(user);
+            } catch (error) {
+                console.log(error);
+                return Promise.reject();
+            }
+        },
+        byEmail: async (email) => {
+            try {
+                const user = await User.findOne({
+                    where: {
+                        email,
                         end_date: null,
                     },
                 });
