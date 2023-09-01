@@ -1,3 +1,10 @@
 export class Session {
-    token: string;
+    token: string | undefined;
+
+    /**
+     *
+     */
+    constructor(token?: string) {
+        this.token = token;
+    }
 }
