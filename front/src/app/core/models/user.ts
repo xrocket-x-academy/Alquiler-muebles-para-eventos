@@ -2,7 +2,7 @@ import { Role } from "./role";
 
 export class User {
     id: number;
-    userName: string;
+    username: string;
     email: string;
     password: string;
     firstName: string;
@@ -13,15 +13,13 @@ export class User {
 
 
     constructor(
-        id: number,
-        userName: string, 
+        username: string, 
         email: string, 
         password: string, 
         firstName: string, 
         lastName: string,)
     {
-        this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -30,7 +28,7 @@ export class User {
 
 
  //métodos de la clase
-    changeUsername(newUserName: string): void { this.userName = newUserName };
+    changeUsername(newUserName: string): void { this.username = newUserName };
     changePassword(oldPassword: string, newPassword: string): void {
     if(newPassword === oldPassword) {
         throw new Error(`Password cannot be de same`);
