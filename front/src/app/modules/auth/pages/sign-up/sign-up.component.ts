@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IAuthService } from 'src/app/core/interfaces/auth-service.interface';
+import { ISessionService } from 'src/app/core/interfaces/session-service.interface';
 import { Session } from 'src/app/core/models/session';
 import { User } from 'src/app/core/models/user';
 
@@ -15,7 +16,8 @@ export class SignUpComponent {
   private session: Session;
 
   constructor(private formBuilder: FormBuilder,
-              private authService: IAuthService) {
+              private authService: IAuthService,
+              private sessionService: ISessionService) {
     this.signUpForm = this.formBuilder.group({
       firstName: [undefined, []],
       lastName: [undefined, []],
@@ -48,6 +50,7 @@ export class SignUpComponent {
     this.authService.signUp(user).subscribe({
       next: (session: Session) => {
         this.session = session;
+        this.sessionService.setToken(this.session);
       },
       error: (err) => {
         console.error(err);
