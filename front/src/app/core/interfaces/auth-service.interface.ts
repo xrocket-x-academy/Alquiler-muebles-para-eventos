@@ -27,23 +27,4 @@ export abstract class IAuthService {
      * @returns un `Session` objeto.
      */
     abstract signIn(user: User): Observable<Session>;
-
-    /**
-     * Almacena los datos de la `Session` en el localStorage del navegador cliente.
-     * Nosotros nos encargamos de identificar y advertir que la sesión expiró.
-     * 
-     * @param session `Session` payload de sesión. 
-     */
-    abstract setSession(session: Session): void;
-
-    /**
-     * Blanquea los datos de la `Session` almacenados 
-     * en el localStorage del navegador cliente.
-     */
-    abstract logout(): void;
-    
-    abstract getExpiration():  moment.Moment;
-
-    abstract isLoggedIn(): boolean;
-    abstract isLoggedOut(): boolean;
 }

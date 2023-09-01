@@ -1,5 +1,5 @@
 export class Session {
-    token: string | undefined;
+    token: string;
 
     /**
      *

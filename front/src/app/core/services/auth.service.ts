@@ -33,24 +33,4 @@ export class AuthService implements IAuthService {
       })
     );
   }
-  
-  setSession(session: Session): void {
-    throw new Error('Method not implemented.');
-  }
-  
-  logout(): void {
-    throw new Error('Method not implemented.');
-  }
-  
-  getExpiration():  moment.Moment { 
-    throw new Error('Method not implemented.');
-  }
-  
-  isLoggedIn(): boolean {
-    throw new Error('Method not implemented.');
-  }
-  
-  isLoggedOut(): boolean {
-    throw new Error('Method not implemented.');
-  }
 }
