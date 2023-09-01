@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const { Model, DataTypes } = require('sequelize');
 const { sequelizeDatabase } = require('../../config/files/sequelize.config');
 
@@ -58,5 +60,10 @@ User.init(
         modelName: 'User',
     },
 );
+
+User.beforeCreate(async (user) => {
+    const saltRounds = 10 || process.env.SALT_ROUNDS;
+    user.password = await bcrypt.hash(user.password, saltRounds);
+});
 
 module.exports = { User };
