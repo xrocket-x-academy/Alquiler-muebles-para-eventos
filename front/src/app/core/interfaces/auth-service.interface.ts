@@ -3,7 +3,9 @@ import { Observable } from "rxjs";
 import { User } from "../models/user";
 import { Session } from "../models/session";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export abstract class IAuthService {
     abstract readonly controllerPath: string;
 
