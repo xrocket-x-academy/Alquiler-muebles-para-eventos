@@ -38,7 +38,7 @@ export class SignUpComponent {
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(14),
-      Validators.maxLength(16),
+      Validators.maxLength(128),
     ]),
   });
 
