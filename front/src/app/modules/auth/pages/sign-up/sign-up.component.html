@@ -6,7 +6,6 @@
           type="text"
           class="form-control"
           id="name"
-          placeholder="nombre"
           formControlName="firstName"
           [ngClass]="{
             'is-invalid':
@@ -30,7 +29,6 @@
           type="text"
           class="form-control"
           id="apellido"
-          placeholder="apellido"
           formControlName="lastName"
           [class.is-invalid]="
             registerForm.get('lastName')?.errors &&
@@ -54,7 +52,6 @@
           type="text"
           class="form-control"
           id="username"
-          placeholder="myusername"
           formControlName="username"
           [class.is-invalid]="
             registerForm.get('username')?.errors &&
@@ -77,7 +74,6 @@
           type="email"
           class="form-control"
           id="email"
-          placeholder="name@example.com"
           formControlName="email"
           [class.is-invalid]="
             registerForm.get('email')?.errors &&
@@ -100,7 +96,6 @@
           type="text"
           class="form-control"
           id="password"
-          placeholder="***************"
           formControlName="password"
           [class.is-invalid]="
             registerForm.get('password')?.errors &&
