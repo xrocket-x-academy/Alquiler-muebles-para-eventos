@@ -1,0 +1,19 @@
+main{
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  form{
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    label{
+      margin: 0;
+    }
+    input{
+      width: 20rem;
+      padding: 10px;
+    }
+  }
+}
