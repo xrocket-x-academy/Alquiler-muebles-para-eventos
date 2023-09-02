@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FurnitureFormComponent } from './furniture/furniture-form/furniture-form.component';
+
 const routes: Routes = [
 
   {
@@ -8,8 +8,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule),
     pathMatch: 'prefix'
   },
-  { path: 'furniture-form', component: FurnitureFormComponent },
-
+  { path: 'furniture',
+    loadChildren: () => import('./furniture/furniture.module').then(m => m.FurnitureModule),
+    pathMatch: 'prefix'
+  },
   {
     path: '**',
     redirectTo: 'auth',
