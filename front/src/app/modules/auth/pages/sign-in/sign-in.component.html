@@ -1,29 +1,63 @@
-
-<div class="container-fluid">
-    <h1>sign-in works!</h1>
-
-</div>
-
-<div class="row">
-    <div class="col-md-4 offset-md-4 col-sm-6 offset-sm-3">
-        <form>
-            <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control">
-            </div>
-            <div class="d-grid gap-3 mt-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-            <div class="my-3">
-                <span>No tenes cuenta? <a href="#">Registrate! </a></span> <br>
-    
-                <span><a href="#">Recuperar Password</a></span>
-            </div>
-    
-        </form>
-        </div>
-</div>
+<main class="row">
+  <form [formGroup]="registerForm" (submit)="onSubmit()">
+    <section class="inputs-container">
+      <div class="form-floating">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="name@example.com"
+          formControlName="email"
+          [class.is-invalid]="
+            registerForm.get('email')?.errors &&
+            registerForm.get('email')?.touched
+          "
+        />
+        <label for="email">Email</label>
+        <span
+          class="invalid-feedback x-invisible"
+          [class.x-visible]="
+            registerForm.get('email')?.errors &&
+            registerForm.get('email')?.touched
+          "
+        >
+          Email invalido
+        </span>
+      </div>
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="password"
+          placeholder="***************"
+          formControlName="password"
+          [class.is-invalid]="
+            registerForm.get('password')?.errors &&
+            registerForm.get('password')?.touched
+          "
+        />
+        <label for="password">Password</label>
+        <span
+          class="invalid-feedback x-invisible"
+          [class.visible]="
+            registerForm.get('password')?.errors &&
+            registerForm.get('password')?.touched
+          "
+        >
+          Minimo 14 caractere(s) y maximo 16 caractere(s)
+        </span>
+      </div>
+    </section>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="registerForm.invalid"
+    >
+      Logearse
+    </button>
+  </form>
+  <div id="extra-text">
+    <span>Aun no tenes cuenta? <a routerLink="/auth/register">Login </a></span>
+    <span><a href="#">Recuperar Password</a></span>
+  </div>
+</main>

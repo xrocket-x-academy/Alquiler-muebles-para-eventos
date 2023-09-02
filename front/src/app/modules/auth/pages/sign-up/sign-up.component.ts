@@ -5,6 +5,7 @@ import {
   Validators,
   AbstractControl,
   ValidatorFn,
+  ValidationErrors,
 } from '@angular/forms';
 @Component({
   selector: 'app-sign-up',
@@ -12,10 +13,6 @@ import {
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent {
-  // passwordMatchValidator(control: AbstractControl): ValidatorFn {
-  //   return
-  // }
-
   registerForm = new FormGroup({
     username: new FormControl('', [
       Validators.required,
@@ -42,12 +39,6 @@ export class SignUpComponent {
       Validators.required,
       Validators.minLength(14),
       Validators.maxLength(16),
-    ]),
-    confirmPassword: new FormControl('', [
-      Validators.required,
-      Validators.minLength(14),
-      Validators.maxLength(16),
-      // this.passwordMatchValidator,
     ]),
   });
 

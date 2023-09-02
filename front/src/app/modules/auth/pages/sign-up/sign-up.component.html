@@ -1,65 +1,134 @@
 <main class="row">
   <form [formGroup]="registerForm" (submit)="onSubmit()">
-    <div class="form-group">
-      <label for="username" class="form-label">Nombre</label>
-      <input
-        type="username"
-        name="username"
-        class="form-control"
-        formControlName="firstName"
-      />
-    </div>
-    <div class="form-group">
-      <label for="username" class="form-label">Apellido</label>
-      <input
-        type="username"
-        name="username"
-        class="form-control"
-        formControlName="lastName"
-      />
-    </div>
-    <div class="form-group">
-      <label for="username" class="form-label">Username</label>
-      <input
-        type="username"
-        name="username"
-        class="form-control"
-        formControlName="username"
-      />
-    </div>
-    <div class="form-group">
-      <label for="email" class="form-label">Email</label>
-      <input
-        type="email"
-        name="email"
-        class="form-control"
-        formControlName="email"
-      />
-    </div>
-    <div class="form-group">
-      <label for="password" class="form-label">Password</label>
-      <input
-        type="password"
-        name="password"
-        class="form-control"
-        formControlName="password"
-      />
-    </div>
-    <div class="form-group">
-      <label for="c_password">Confirm Password</label>
-      <input
-        type="password"
-        name="c_password"
-        class="form-control"
-        formControlName="confirmPassword"
-      />
-    </div>
-    <div class="d-grid gap-3 mt-3">
-      <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Submit</button>
-    </div>
-    <div class="my-3">
-      <span>Ya tenes cuenta? <a href="#">Login </a></span> <br />
-      <span><a href="#">Recuperar Password</a></span>
-    </div>
+    <section class="inputs-container">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="nombre"
+          formControlName="firstName"
+          [ngClass]="{
+            'is-invalid':
+              registerForm.get('firstName')?.errors &&
+              registerForm.get('firstName')?.touched,
+          }"
+        />
+        <label for="name">Nombre</label>
+        <span
+          class="invalid-feedback x-invisible"
+          [class.x-visible]="
+            registerForm.get('firstName')?.errors &&
+            registerForm.get('firstName')?.touched
+          "
+        >
+          Minimo 1 caracter y maximo 30 caractere(s)
+        </span>
+      </div>
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="apellido"
+          placeholder="apellido"
+          formControlName="lastName"
+          [class.is-invalid]="
+            registerForm.get('lastName')?.errors &&
+            registerForm.get('lastName')?.touched
+          "
+        />
+        <label for="apellido">Apellido</label>
+        <span
+          class="invalid-feedback"
+          class="invalid-feedback x-invisible"
+          [class.x-visible]="
+            registerForm.get('lastName')?.errors &&
+            registerForm.get('lastName')?.touched
+          "
+        >
+          Minimo 1 caracter y maximo 30 caractere(s)
+        </span>
+      </div>
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="myusername"
+          formControlName="username"
+          [class.is-invalid]="
+            registerForm.get('username')?.errors &&
+            registerForm.get('username')?.touched
+          "
+        />
+        <label for="username">Username</label>
+        <span
+          class="invalid-feedback x-invisible"
+          [class.x-visible]="
+            registerForm.get('username')?.errors &&
+            registerForm.get('username')?.touched
+          "
+        >
+          Minimo 1 caracter y maximo 50 caractere(s)
+        </span>
+      </div>
+      <div class="form-floating">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="name@example.com"
+          formControlName="email"
+          [class.is-invalid]="
+            registerForm.get('email')?.errors &&
+            registerForm.get('email')?.touched
+          "
+        />
+        <label for="email">Email</label>
+        <span
+          class="invalid-feedback x-invisible"
+          [class.x-visible]="
+            registerForm.get('email')?.errors &&
+            registerForm.get('email')?.touched
+          "
+        >
+          Email invalido
+        </span>
+      </div>
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="password"
+          placeholder="***************"
+          formControlName="password"
+          [class.is-invalid]="
+            registerForm.get('password')?.errors &&
+            registerForm.get('password')?.touched
+          "
+        />
+        <label for="password">Password</label>
+        <span
+          class="invalid-feedback x-invisible"
+          [class.x-visible]="
+            registerForm.get('password')?.errors &&
+            registerForm.get('password')?.touched
+          "
+        >
+          Minimo 14 caractere(s) y maximo 16 caractere(s)
+        </span>
+      </div>
+    </section>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="registerForm.invalid"
+    >
+      Registrarse
+    </button>
   </form>
+  <div id="extra-text">
+    <span>Ya tenes cuenta? <a routerLink="/auth/login">Login </a></span>
+    <span><a href="#">Recuperar Password</a></span>
+  </div>
 </main>
