@@ -2,7 +2,7 @@ const express = require('express');
 
 const furnitureRouter = express.Router();
 
-const furnitureController = require('../controllers/furniture/furniturecontrollers');
+const furnitureController = require('../../controllers/furniture/furniturecontrollers');
 
 furnitureRouter.post('/', furnitureController.createFurniture);
 furnitureRouter.get('/all', furnitureController.getAll);

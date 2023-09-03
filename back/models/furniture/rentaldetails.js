@@ -20,6 +20,10 @@ RentalDetails.init({
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    endDate: {
+        type: DataTypes.DATE,
+        allowNull: true,
+    },
 }, {
     sequelize: sequelizeDatabase,
     modelName: 'RentalDetails',

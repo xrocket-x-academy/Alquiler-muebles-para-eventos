@@ -1,33 +1,45 @@
+import { Role } from "./role";
+
 export class User {
     id: number;
-    userName:string ;
-    email:string ;
-    password:string ;
-    firstName:string ;
-    lastName:string ;
-    startDate: Date ;
-    endDate:Date ;
+    username: string;
+    email: string;
+    password: string;
+    first_name: string;
+    last_name: string;
+    startDate: Date;
+    endDate: Date;
+    roles: Array<Role>;
 
 
-constructor(id: number, userName:string,email:string, password:string,firstName:string,lastName:string,startDate: Date, endDate:Date)
-{
-    this.id = id;
-    this.userName = userName;
-    this.email = email;
-    this.password = password;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.startDate = startDate;
-    this.endDate = endDate;
-    
-
-}
+    constructor(
+        username?: string, 
+        email?: string, 
+        password?: string, 
+        firstName?: string, 
+        lastName?: string,)
+    {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.first_name = firstName;
+        this.last_name = lastName;
+    }
 
 
  //métodos de la clase
- new(){ };
- changeUsername(){ };
- changePassword(){ };
- resetPassword(){ };
- getRoles(){ };
+    changeUsername(newUserName: string): void { this.username = newUserName };
+    changePassword(oldPassword: string, newPassword: string): void {
+    if(newPassword === oldPassword) {
+        throw new Error(`Password cannot be de same`);
+    }
+
+    this.password = newPassword;
+
+    // posteriormente se envia la instancia de esta clase hacia el service que actualiza
+    // la informacion del usuario
+    };
+    
+    resetPassword(){ };
+    getRoles(): Array<Role> { return this.roles; };
 }
