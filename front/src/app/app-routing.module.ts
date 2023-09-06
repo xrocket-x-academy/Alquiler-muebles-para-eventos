@@ -2,14 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-
   {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule),
     pathMatch: 'prefix'
   },
   { path: 'furniture',
-    loadChildren: () => import('./furniture/furniture.module').then(m => m.FurnitureModule),
+    loadChildren: () => import('./features/furniture/furniture.module').then(m => m.FurnitureModule),
     pathMatch: 'prefix'
   },
   {
