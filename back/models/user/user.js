@@ -45,7 +45,7 @@ User.init(
         password: {
             type: DataTypes.STRING,
             validate: {
-                len: [14, 16],
+                len: [14, 128],
             },
             allowNull: false,
         },

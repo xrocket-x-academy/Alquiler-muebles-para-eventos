@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { RentalCalculatorComponent } from './modules/rental-calculator/rental-calculator.component';
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
@@ -18,8 +19,10 @@ import { RentalCalculatorComponent } from './modules/rental-calculator/rental-ca
     AppRoutingModule,
     SharedModule,
     FormsModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

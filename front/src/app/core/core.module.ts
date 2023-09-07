@@ -4,30 +4,23 @@ import { CommonModule } from '@angular/common';
 import { throwIfAlreadyLoaded } from './core-import.guard';
 
 import { HttpClientModule } from '@angular/common/http';
-<<<<<<< HEAD
+import { IAuthService } from './interfaces/auth-service.interface';
+import { AuthService } from './services/auth.service';
+import { ISessionService } from './interfaces/session-service.interface';
+import { SessionService } from './services/session.service';
 
 
 @NgModule({
   declarations: [],
-=======
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponentComponent } from './pages/login-component/login-component.component';
-
-
-@NgModule({
-  declarations: [
-    NotFoundComponent,
-    HomeComponent,
-    LoginComponentComponent
-  ],
->>>>>>> c07487001af812fbb05cbeec28414e09048d2ec6
   imports: [
     CommonModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   exports: [],
-  providers: []
+  providers: [
+    { provide: IAuthService, useClass: AuthService},
+    { provide: ISessionService, useClass: SessionService }
+  ]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
