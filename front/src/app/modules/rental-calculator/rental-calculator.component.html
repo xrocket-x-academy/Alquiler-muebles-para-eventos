@@ -1,0 +1,17 @@
+<div class="rental-calculator">
+    <div class="card">
+      <div class="card-header">
+        Detalles del Alquiler
+      </div>
+      <div class="card-body">
+        <p>{{ units }} Unidades a Alquilar</p>
+        <p>Precio: {{ unitPrice | currency }}</p>
+        <div class="form-group">
+          <label for="quantity">Cantidad:</label>
+          <input type="number" id="quantity" [(ngModel)]="quantity" (input)="calculateTotal()">
+        </div>
+        <p class="total-price">Total: {{ totalPrice | currency }}</p>
+        <button class="btn btn-primary" (click)="goToCheckout()">Alquilar!</button>
+      </div>
+    </div>
+  </div>
