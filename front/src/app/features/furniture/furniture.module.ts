@@ -12,7 +12,7 @@ import { DetailsFurnitureComponent } from './details-furniture/details-furniture
     FurnitureFormComponent,
     ListFurnitureComponent,
     CardFurnitureComponent,
-    DetailsFurnitureComponent
+    
   ],
   imports: [
     CommonModule,

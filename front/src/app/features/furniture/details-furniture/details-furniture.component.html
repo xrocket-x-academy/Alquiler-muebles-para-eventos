@@ -58,3 +58,9 @@
     <p class="h4">Stock: {{ furniture.stock }} </p>
     <p class="h4">Precio: $ {{ furniture.price }} </p>
   </div>
+
+  <app-rental-calculator>
+    [units]="furniture?.id"
+    [unitPrice]="furniture?.price"
+  </app-rental-calculator>
+  
