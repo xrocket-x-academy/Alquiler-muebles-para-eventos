@@ -24,7 +24,6 @@ export class RentalCalculatorComponent implements OnChanges {
   }
 
   goToCheckout(): void {
-    // Logica para redirigir al checkout
     this.router.navigate(['/checkout']);
   }
 }
