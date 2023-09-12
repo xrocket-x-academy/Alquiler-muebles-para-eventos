@@ -1,0 +1,71 @@
+@import "../../../../../styles.scss";
+
+main {
+  min-height: calc(100vh - 80px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 21px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 25rem;
+    width: 100%;
+    gap: 10px;
+
+    .inputs-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 5px;
+
+      div {
+        max-width: 400px;
+        width: 100%;
+
+        input {
+          max-width: 400px;
+        }
+      }
+    }
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    button {
+      width: 100%;
+      padding: 1rem 0.75rem;
+    }
+  }
+
+  #extra-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      width: max-content;
+    }
+  }
+}
+
+.x-visible {
+  visibility: visible !important;
+  text-align: left;
+}
+
+.x-invisible {
+  visibility: hidden;
+  display: block;
+}

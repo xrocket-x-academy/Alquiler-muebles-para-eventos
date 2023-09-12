@@ -5,7 +5,7 @@ import {
   UserInfo,
   logoLink,
 } from './shared/header/header.component';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -48,4 +48,7 @@ export class AppComponent {
     name: 'airbn',
     url: '/home',
   };
+  
+  constructor(private router: Router) {}
 }
+

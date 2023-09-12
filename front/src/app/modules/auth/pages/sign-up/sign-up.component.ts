@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAuthService } from 'src/app/core/interfaces/auth-service.interface';
 import { ISessionService } from 'src/app/core/interfaces/session-service.interface';
 import { Session } from 'src/app/core/models/session';
@@ -8,39 +8,67 @@ import { User } from 'src/app/core/models/user';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss']
+  styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent {
 
-  public signUpForm: FormGroup;
+  public registerForm: FormGroup;
   private session: Session;
 
   constructor(private formBuilder: FormBuilder,
               private authService: IAuthService,
               private sessionService: ISessionService) {
-    this.signUpForm = this.formBuilder.group({
-      firstName: [undefined, []],
-      lastName: [undefined, []],
-      username: [undefined, []],
-      email: [undefined, []],
-      password: [undefined, []],
-      confirmPassword: [undefined, []],
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(30)
+      ]],
+      lastName: ['', [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(30)
+      ]],
+      username: ['', [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(50)
+      ]],
+      email: ['', [
+        Validators.required,
+        Validators.email,
+        Validators.minLength(3),
+        Validators.maxLength(50)
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(14),
+        Validators.maxLength(128),
+      ]],
+      // confirmPassword: ['', [
+      //   Validators.required,
+      //   Validators.minLength(14),
+      //   Validators.maxLength(128),
+      // ]],
     });
   }
 
   public onSubmit(): void {
-    if(!this.confirmPasswordAreSame()) {
-      // cambiar a notificacion ej.: NgxToaster
-      console.error(`passwords do not match`);
-      return;
-    }
+    
+    // VER LÓGICA CONFIRMAR PASSWORD
+
+    // if(!this.confirmPasswordAreSame()) {
+    //   // cambiar a notificacion ej.: NgxToaster
+    //   console.error(`passwords do not match`);
+    //   return;
+    // }
     
     const newUser = new User(
-      this.signUpForm.get('username')?.value,
-      this.signUpForm.get('email')?.value,
-      this.signUpForm.get('password')?.value,
-      this.signUpForm.get('firstName')?.value,
-      this.signUpForm.get('lastName')?.value,
+      this.registerForm.get('username')?.value,
+      this.registerForm.get('email')?.value,
+      this.registerForm.get('password')?.value,
+      this.registerForm.get('firstName')?.value,
+      this.registerForm.get('lastName')?.value,
     );
 
     this.signUp(newUser);
@@ -59,7 +87,8 @@ export class SignUpComponent {
     });
   }
 
+  // TODO: Aplicar lógica confirmar password
   private confirmPasswordAreSame(): boolean {
-    return this.signUpForm.get('confirmPassword')?.value === this.signUpForm.get('password')?.value;
+    return this.registerForm.get('confirmPassword')?.value === this.registerForm.get('password')?.value;
   }
 }
