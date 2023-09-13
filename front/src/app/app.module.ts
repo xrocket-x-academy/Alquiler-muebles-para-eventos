@@ -9,10 +9,7 @@ import { RentalCalculatorComponent } from './modules/rental-calculator/rental-ca
 import { CoreModule } from './core/core.module';
 import { DetailsFurnitureComponent } from './features/furniture/details-furniture/details-furniture.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -27,10 +24,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     FormsModule,
     CoreModule,
     BrowserAnimationsModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
