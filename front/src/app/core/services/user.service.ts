@@ -3,6 +3,7 @@ import { ApiService } from '../http/api.service';
 import { HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { BaseService } from 'src/app/core/interfaces/base-service';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +22,10 @@ export class UserService implements BaseService<unknown> {
     throw new Error('Method not implemented.');
   }
   
-  public getById(userId: number): Observable<unknown> {
+  public getById(userId: number): Observable<User> {
     const params = new HttpParams().set('id', userId);
     
-    return this.apiService.get<unknown>(this.controllerPath, params).pipe(
+    return this.apiService.get<User>(this.controllerPath, params).pipe(
       map((response) => {
         return response
       })
