@@ -35,8 +35,15 @@ export class CheckoutDetailsComponent {
 
   confirmOrder() {
     // Logica para confirmar la orden a definir
-
-    // Navegacion a la pagina de confirmacion
-    this.router.navigate(['/checkout/confirmation']);
+    this.furnitureService.updateAvailability(this.furniture.id, false).subscribe(
+      () => {
+        console.log('Mueble marcado como no disponible');
+        
+        this.router.navigate(['/checkout/confirmation']);
+      },
+      (error: any) => {
+        console.error('Error al cambiar la disponibilidad del mueble', error);
+      }
+    );
   }
 }

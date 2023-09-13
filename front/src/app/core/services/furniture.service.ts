@@ -45,6 +45,7 @@ export class FurnitureService implements BaseService<Furniture> {
    * Llamada a enpoint que retorna un furniture modificado.
    * 
    * @param furniture - El objeto de tipo Furniture con sus propiedades.
+   * @param available - Agrego para el nuevo valor de disponibilidad (true or false)
    * @returns - Observable con la respuesta de tipo Furniture.
    */
   public update(furniture: Furniture): Observable<Furniture> {
@@ -66,4 +67,16 @@ export class FurnitureService implements BaseService<Furniture> {
       })
     );
   }
+
+  public updateAvailability(furnitureId: number, available: boolean): Observable<Furniture> {
+    const requestPath = `${this.controllerPath}/update-availability/${furnitureId}`;
+    const requestBody = { available };
+  
+    return this.apiService.put<Furniture>(requestPath, requestBody).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
 }
+

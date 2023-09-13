@@ -60,3 +60,14 @@ exports.getAll = async (req, res) => {
         res.status(500).json({ message: 'Error fetching Furniture IDs' });
     }
 };
+
+exports.updateAvailability = async (req, res) => {
+    const furnitureId = req.params.id;
+    const { available } = req.body;
+    try {
+        const updatedFurniture = await furnitureProvider.updateAvailability(furnitureId, available);
+        res.json({ furniture: updatedFurniture, message: 'Furniture availability updated' });
+    } catch (error) {
+        res.status(404).json({ message: 'Furniture not found' });
+    }
+};

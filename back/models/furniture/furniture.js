@@ -49,6 +49,12 @@ Furniture.init({
         defaultValue: null,
         allowNull: true,
     },
+    available: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true, // Dejo por defecto el mueble en available
+    },
+
 }, {
     sequelize: sequelizeDatabase,
     modelName: 'Furniture',
