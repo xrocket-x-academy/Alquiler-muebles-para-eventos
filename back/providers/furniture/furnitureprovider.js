@@ -81,6 +81,21 @@ const furnitureProvider = {
             return Promise.reject(error);
         }
     },
+    updateAvailability: async (id, available) => {
+        try {
+            const furniture = await Furniture.findByPk(id);
+            if (!furniture) {
+                return Promise.reject(new Error('Mueble not found'));
+            }
+
+            furniture.available = available;
+
+            await furniture.save();
+            return Promise.resolve(furniture);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    },
     associate: {
         addOwnerToFurniture: async (furnitureId, ownerId) => {
             try {

@@ -1,7 +1,7 @@
 export class Furniture {
   id: number;
   idOwner: number;
-  name:string;
+  name: string;
   description: string;
   stock: number;
   price: number;
@@ -10,35 +10,56 @@ export class Furniture {
 
   constructor(
     id: number,
-    idOwner : number,
-    name:string,
+    idOwner: number,
+    name: string,
     description: string,
     stock: number,
     price: number,
     startDate: Date,
-    endDate: Date)
-    {
+    endDate: Date
+  ) {
     this.id = id;
     this.idOwner = idOwner;
     this.name = name;
     this.description = description;
     this.stock = stock;
     this.price = price;
-    this.startDate = startDate,
-    this.endDate = endDate
-
+    this.startDate = startDate;
+    this.endDate = endDate;
   }
-  //métodos a especificar//
 
-  new(){ };
+  // Método para crear una nueva instancia de Furniture
+  static new(
+    id: number,
+    idOwner: number,
+    name: string,
+    description: string,
+    stock: number,
+    price: number,
+    startDate: Date,
+    endDate: Date
+  ): Furniture {
+    return new Furniture(id, idOwner, name, description, stock, price, startDate, endDate);
+  }
 
-  setStock(){ };
+  // Método para establecer el stock
+  setStock(newStock: number): void {
+    this.stock = newStock;
+  }
 
-  getOwner(){ };
+  // Método para obtener el propietario
+  getOwner(): number {
+    return this.idOwner;
+  }
 
-  setPrice() { };
+  // Método para establecer el precio
+  setPrice(newPrice: number): void {
+    this.price = newPrice;
+  }
 
-  isAvailable(){ };
+  // Método para verificar si el mueble está disponible
+  isAvailable(): boolean {
+    return this.stock > 0 && this.startDate <= new Date() && this.endDate >= new Date();
+  }
 }
-
 

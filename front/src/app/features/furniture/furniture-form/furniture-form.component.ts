@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { FurnitureService } from 'src/app/core/services/furniture.service'
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FurnitureFormComponent implements OnInit {
   furnitureForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    private furnitureService: FurnitureService,
+    private router: Router) { }
   
   ngOnInit(): void {
       this.initForm();
@@ -31,8 +34,27 @@ export class FurnitureFormComponent implements OnInit {
   onSubmit() {
     if (this.furnitureForm.valid) {
       const formData = this.furnitureForm.value;
-      //Espacio para desarrollar el envio de los datos al back
-      console.log(formData);
+      // Lógica para enviar formData al servicio FurnitureService
+      this.furnitureService.create(formData).subscribe(
+        (newFurnitureId) => {
+          // Lógica para manejar la respuesta exitosa
+          console.log('Mueble creado con éxito. ID:', newFurnitureId);
+          // Redirigir al usuario 
+          this.router.navigate(['furniture']);
+        },
+        (error) => {
+          // Lógica para manejar errores
+          console.error('Error al crear el mueble', error);
+        }
+      );
     }
   }
+
+  
 }
+
+
+
+
+
+
