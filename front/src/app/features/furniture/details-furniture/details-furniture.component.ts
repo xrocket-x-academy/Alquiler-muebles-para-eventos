@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, NgModule } from '@angular/core';
 import { Route } from '@angular/router';
 
 import { Furniture } from 'src/app/core/models/furniture';
@@ -10,6 +10,7 @@ import { FurnitureService } from 'src/app/core/services/furniture.service';
   templateUrl: './details-furniture.component.html',
   styleUrls: ['./details-furniture.component.scss']
 })
+
 export class DetailsFurnitureComponent implements OnInit {
   furniture: Furniture;
 
