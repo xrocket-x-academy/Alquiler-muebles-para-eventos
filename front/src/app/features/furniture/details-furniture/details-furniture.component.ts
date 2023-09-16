@@ -16,6 +16,8 @@ export class DetailsFurnitureComponent implements OnInit {
   constructor(private router: ActivatedRoute, private furnitureService: FurnitureService) {} // Inyectamos el servicio  en el constructor de nuestro componente
 
   indice: number =  0;
+  available: boolean= false; // para probar lo pongo directo en false
+
      fotos: string[] = [
     '../assets/living1.jpg',
     '../assets/living2.jpg',
@@ -29,5 +31,12 @@ export class DetailsFurnitureComponent implements OnInit {
     this.furnitureService.getById(this.indice).subscribe(data => {
     this.furniture = data;
     });
+
+    this.furnitureService.updateAvailability( this.indice,this.available).subscribe(data => {
+      this.available = data.available;
+          
+    });
+
     }
 }
+  

@@ -58,3 +58,12 @@
     <p class="h4">Stock: {{ furniture.stock }} </p>
     <p class="h4">Precio: $ {{ furniture.price }} </p>
   </div>
+  <div *ngIf="available">
+    <!-- Mensaje de mueble disponible si available es true -->
+    <h1>Mueble Disponible</h1>
+  </div>
+  <div *ngIf="!available">
+    <!-- Mensaje de mueble no disponible  si available es false -->
+    <h1>Mueble Agotado</h1>
+    
+  </div>
