@@ -3,6 +3,8 @@ const { furnitureProvider } = require('../../providers/furniture/furnitureprovid
 
 exports.createFurniture = async (req, res) => {
     try {
+        console.log('Datos recibidos del formulario:', req.body);
+
         const {
             name, description, price, stock, startDate, endDate,
         } = req.body;
@@ -10,8 +12,10 @@ exports.createFurniture = async (req, res) => {
         const newFurniture = await furnitureProvider.create({
             name, description, price, stock, startDate, endDate, ownerId: userId,
         });
+        console.log('Mueble creado con éxito. ID:', newFurniture.id);
         res.json({ furniture: newFurniture, message: 'Creaste un mueble, sos un capo' });
     } catch (error) {
+        console.error('Error al crear el mueble:', error);
         res.status(500).json({ message: 'Error creating Furniture' });
     }
 };

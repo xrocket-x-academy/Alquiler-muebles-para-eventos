@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../http/api.service';
 import { BaseService } from '../interfaces/base-service';
 import { Furniture } from '../models/furniture';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,8 @@ export class FurnitureService implements BaseService<Furniture> {
 
   public create(model: Furniture): Observable<number> {
     return this.apiService.post<number>(this.controllerPath, model).pipe(
-      map((reponse) => {
-        return reponse;
+      map((response) => {
+        return response;
       })
     );
   }
@@ -27,6 +27,10 @@ export class FurnitureService implements BaseService<Furniture> {
     return this.apiService.get<Furniture[]>(requestPath).pipe(
       map((response) => {
         return response;
+      }),
+      catchError((error) => {
+        console.error('Error en el servicio:', error);
+        throw error;
       })
     );
   }
