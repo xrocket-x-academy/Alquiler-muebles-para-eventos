@@ -41,7 +41,7 @@ export class SessionService implements ISessionService{
     throw new Error('Method not implemented.');
   }
   isLoggedIn(): boolean {
-    throw new Error('Method not implemented.');
+    return !!sessionStorage.getItem('token');
   }
   isLoggedOut(): boolean {
     throw new Error('Method not implemented.');
