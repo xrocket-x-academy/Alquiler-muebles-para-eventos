@@ -26,7 +26,7 @@ export class FurnitureFormComponent implements OnInit {
       description: [''],
       stock: [0, [Validators.required, Validators.min(0)]],
       price: [0, [Validators.required, Validators.min(0)]],
-      startDate: [null, Validators.required],
+      startDate: [null],
       endDate: [null],
     });
   }
