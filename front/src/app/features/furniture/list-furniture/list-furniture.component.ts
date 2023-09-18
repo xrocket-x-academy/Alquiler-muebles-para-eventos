@@ -3,6 +3,7 @@ import { Furniture } from 'src/app/core/models/furniture';
 import { CardFurnitureComponent } from '../card-furniture/card-furniture.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { FurnitureService } from 'src/app/core/services/furniture.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -12,7 +13,8 @@ import { FurnitureService } from 'src/app/core/services/furniture.service';
 })
 export class ListFurnitureComponent implements OnInit {
   @Input() furnitures: any[];
-  constructor(private furnitureService:FurnitureService ) {
+  constructor(private furnitureService:FurnitureService,
+              private spinner: NgxSpinnerService) {
     this.furnitures = [];
   }
 
@@ -20,12 +22,15 @@ export class ListFurnitureComponent implements OnInit {
     this.obtenerMuebles();
   }
   private obtenerMuebles(): void {
+    this.spinner.show();
     this.furnitureService.getAll().subscribe({
             next: (furnitures: Furniture[]) => {
               this.furnitures = furnitures;
+              this.spinner.hide();
             },
             error: (error) => {
               console.error(error);
+              this.spinner.hide();
             }
           });
 

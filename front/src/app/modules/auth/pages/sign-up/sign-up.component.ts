@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { IAuthService } from 'src/app/core/interfaces/auth-service.interface';
 import { ISessionService } from 'src/app/core/interfaces/session-service.interface';
 import { Session } from 'src/app/core/models/session';
@@ -17,7 +18,8 @@ export class SignUpComponent {
 
   constructor(private formBuilder: FormBuilder,
               private authService: IAuthService,
-              private sessionService: ISessionService) {
+              private sessionService: ISessionService,
+              private spinner: NgxSpinnerService) {
     this.registerForm = this.formBuilder.group({
       firstName: ['', [
         Validators.required,
@@ -75,13 +77,16 @@ export class SignUpComponent {
   }
 
   private signUp(user: User) {
+    this.spinner.show();
     this.authService.signUp(user).subscribe({
       next: (session: Session) => {
         this.session = session;
         this.sessionService.setToken(this.session);
+        this.spinner.hide();
       },
       error: (err) => {
         console.error(err);
+        this.spinner.hide();
       },
       complete: () => { console.info(`complete sign-up`); }
     });
