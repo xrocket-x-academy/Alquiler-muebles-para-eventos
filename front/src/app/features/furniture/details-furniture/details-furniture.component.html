@@ -59,6 +59,16 @@
     <p class="h4">Precio: $ {{ furniture.price }} </p>
   </div>
 
+  <div *ngIf="available">
+    <!-- Mensaje de mueble disponible si available es true -->
+    <h1>Mueble/Servicio Disponible</h1>
+  </div>
+  <div *ngIf="!available">
+    <!-- Mensaje de mueble no disponible  si available es false -->
+    <h1>Mueble/Servicio No Disponible</h1>
+    
+  </div>
+
   <app-rental-calculator>
     [units]="furniture?.id"
     [unitPrice]="furniture?.price"
