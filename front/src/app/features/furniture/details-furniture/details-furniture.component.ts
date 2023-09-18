@@ -24,11 +24,17 @@ export class DetailsFurnitureComponent implements OnInit {
     '../assets/living1.jpg',
     '../assets/living2.jpg'
   ];
+  available: boolean; 
   ngOnInit(): void {
 
     this.indice = this.router.snapshot.params ['id'];
     this.furnitureService.getById(this.indice).subscribe(data => {
     this.furniture = data;
+    });
+    this.furnitureService.updateAvailability( this.indice,this.available).subscribe(data => {
+      
+      this.available = data.isAvailable();
+      
     });
     }
 }
