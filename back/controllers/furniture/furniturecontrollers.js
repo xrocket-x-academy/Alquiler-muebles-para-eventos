@@ -16,7 +16,7 @@ exports.createFurniture = async (req, res) => {
         res.json({ furniture: newFurniture, message: 'Creaste un mueble, sos un capo' });
     } catch (error) {
         console.error('Error al crear el mueble:', error);
-        res.status(500).json({ message: 'Error creating Furniture' });
+        res.status(500).json({ message: 'Error creating Furniture', details: error.message });
     }
 };
 
