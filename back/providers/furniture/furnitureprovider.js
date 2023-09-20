@@ -11,8 +11,9 @@ const furnitureProvider = {
                 name, description, price, stock, startDate, endDate,
             });
             await newFurniture.validate();
-            await newFurniture.save();
-            return Promise.resolve(newFurniture);
+            // await newFurniture.save();
+            // return Promise.resolve(newFurniture);
+            return Promise.resolve(await newFurniture.save());
         } catch (error) {
             return Promise.reject(error);
         }
