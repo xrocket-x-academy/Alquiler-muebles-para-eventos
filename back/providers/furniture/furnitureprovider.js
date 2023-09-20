@@ -61,7 +61,7 @@ const furnitureProvider = {
                 return Promise.reject(new Error('Furniture already deleted'));
             }
             furniture.endDate = new Date();
-            await furniture.save;
+            await furniture.save();
             return Promise.resolve('Mueble deleted');
         } catch (error) {
             return Promise.reject(error);
