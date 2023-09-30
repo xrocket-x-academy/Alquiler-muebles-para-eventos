@@ -14,6 +14,8 @@ export class SignInComponent {
 
   public registerForm: FormGroup;
   private session: Session;
+  // para almacenar el mensaje
+  mensaje: string = '';
 
   constructor(private formBuilder: FormBuilder,
               private authService: IAuthService,
@@ -48,9 +50,13 @@ export class SignInComponent {
       next: (session: Session) => {
         this.session = session;
         this.sessionService.setToken(this.session);
+        //Asigna el mensaje de éxito
+         this.mensaje = 'Inicio de sesión exitoso';
       },
       error: (err) => {
         console.error(err);
+        // En caso de error, puedes asignar un mensaje de error aquí también
+        this.mensaje = 'Error al iniciar sesión. Email y/o password invalidos.';
       },
       complete: () => { console.info(`complete sign-in`); }
     });
