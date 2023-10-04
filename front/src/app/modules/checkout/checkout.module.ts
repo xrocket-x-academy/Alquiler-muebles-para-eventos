@@ -5,10 +5,18 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'details',
-   component: CheckoutDetailsComponent },
-  { path: 'confirmation',
-   component: ConfirmationComponent },
+  {
+    path: 'details',
+    component: CheckoutDetailsComponent
+  },
+  {
+    path: 'confirmation',
+    component: ConfirmationComponent
+  },
+  {
+    path: "**",
+    redirectTo: 'details'
+  }
 ];
 
 

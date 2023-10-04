@@ -6,24 +6,27 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule),
-    pathMatch: 'full'
-  },
-  { path: 'calculator',
-   component: RentalCalculatorComponent,
-  },
-  { path: 'checkout', 
-    loadChildren: () => import('./modules/checkout/checkout.module').then(m => m.CheckoutModule),
-    pathMatch: 'full'
-   },
-  { path: 'furniture',
-    loadChildren: () => import('./features/furniture/furniture.module').then(m => m.FurnitureModule),
-    pathMatch: 'full'
+    pathMatch: 'prefix'
   },
   {
-    path: '**',
+    path: 'calculator',
+    component: RentalCalculatorComponent,
+  },
+  {
+    path: 'checkout',
+    loadChildren: () => import('./modules/checkout/checkout.module').then(m => m.CheckoutModule),
+    pathMatch: 'prefix'
+  },
+  {
+    path: 'furniture',
+    loadChildren: () => import('./features/furniture/furniture.module').then(m => m.FurnitureModule),
+    pathMatch: 'prefix'
+  },
+  {
+    path: "**",
     redirectTo: 'auth',
     pathMatch: 'full'
-  },
+  }
 ];
 
 @NgModule({

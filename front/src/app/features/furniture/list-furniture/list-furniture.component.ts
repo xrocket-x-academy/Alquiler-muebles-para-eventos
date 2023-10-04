@@ -11,8 +11,10 @@ import { FurnitureService } from 'src/app/core/services/furniture.service';
   styleUrls: ['./list-furniture.component.scss']
 })
 export class ListFurnitureComponent implements OnInit {
-  @Input() furnitures: any[];
-  constructor(private furnitureService:FurnitureService ) {
+
+  @Input() furnitures: Furniture[];
+
+  constructor(private furnitureService: FurnitureService) {
     this.furnitures = [];
   }
 
@@ -21,13 +23,14 @@ export class ListFurnitureComponent implements OnInit {
   }
   private obtenerMuebles(): void {
     this.furnitureService.getAll().subscribe({
-            next: (furnitures: Furniture[]) => {
-              this.furnitures = furnitures;
-            },
-            error: (error) => {
-              console.error(error);
-            }
-          });
+      next: (furnitures: Furniture[]) => {
+        // Type missmatch.
+        this.furnitures = furnitures;
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
 
   }
 }
