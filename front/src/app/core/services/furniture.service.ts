@@ -8,8 +8,8 @@ import { Observable, catchError, map } from 'rxjs';
   providedIn: 'root'
 })
 export class FurnitureService implements BaseService<Furniture> {
-  
-  readonly controllerPath: string = `/furniture`; 
+
+  readonly controllerPath: string = `/furniture`;
 
   constructor(private apiService: ApiService) { }
 
@@ -25,15 +25,7 @@ export class FurnitureService implements BaseService<Furniture> {
   public getAll(): Observable<Furniture[]> {
     const requestPath = `${this.controllerPath}/all`;
 
-    return this.apiService.get<Furniture[]>(requestPath).pipe(
-      map((response) => {
-        return response;
-      }),
-      catchError((error) => {
-        console.error('Error en el servicio:', error);
-        throw error;
-      })
-    );
+    return this.apiService.get<Furniture[]>(requestPath);
   }
 
   public getById(id: number): Observable<Furniture> {
@@ -65,7 +57,7 @@ export class FurnitureService implements BaseService<Furniture> {
 
   public deleteById(id: number): Observable<number> {
     const requestPath = `${this.controllerPath}/${id}`;
-    
+
     return this.apiService.delete<number>(requestPath).pipe(
       map((response) => {
         return response;
@@ -76,7 +68,7 @@ export class FurnitureService implements BaseService<Furniture> {
   public updateAvailability(furnitureId: number, available: boolean): Observable<Furniture> {
     const requestPath = `${this.controllerPath}/update-availability/${furnitureId}`;
     const requestBody = { available };
-  
+
     return this.apiService.put<Furniture>(requestPath, requestBody).pipe(
       map((response) => {
         return response;

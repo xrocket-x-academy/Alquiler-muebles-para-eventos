@@ -13,6 +13,10 @@ const routes: Routes = [
   },
   { path: 'list', component: ListFurnitureComponent },
   { path: 'details-furniture/:id', component: DetailsFurnitureComponent },
+  {
+    path: '**',
+    redirectTo: 'list'
+  }
 ];
 
 @NgModule({
