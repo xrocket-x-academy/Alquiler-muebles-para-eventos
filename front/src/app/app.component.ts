@@ -27,8 +27,8 @@ export class AppComponent {
       url: '/',
     },
     {
-      name: 'muebles',
-      url: '/muebles',
+      name: 'furniture',
+      url: '/furniture/form',
     },
   ];
   authLinks: AuthLink[] = [
@@ -48,7 +48,7 @@ export class AppComponent {
     name: 'airbn',
     url: '/home',
   };
-  
+
   constructor(private router: Router) {}
 }
 
