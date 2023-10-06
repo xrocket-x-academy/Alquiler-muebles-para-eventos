@@ -26,7 +26,7 @@ export class FurnitureFormComponent implements OnInit {
       description: [''],
       stock: [0, [Validators.required, Validators.min(0)]],
       price: [0, [Validators.required, Validators.min(0)]],
-      startDate: [null, Validators.required],
+      startDate: [null],
       endDate: [null],
     });
   }
@@ -34,6 +34,7 @@ export class FurnitureFormComponent implements OnInit {
   onSubmit() {
     if (this.furnitureForm.valid) {
       const formData = this.furnitureForm.value;
+      console.log('Datos enviados al servicio:', formData);
       // Lógica para enviar formData al servicio FurnitureService
       this.furnitureService.create(formData).subscribe(
         (newFurnitureId) => {

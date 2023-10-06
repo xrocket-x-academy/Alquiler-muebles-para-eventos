@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: 'form',
     component: FurnitureFormComponent,
-    pathMatch: 'full',
+    // pathMatch: 'full',
   },
   { path: 'list', component: ListFurnitureComponent },
   { path: 'details-furniture/:id', component: DetailsFurnitureComponent },
