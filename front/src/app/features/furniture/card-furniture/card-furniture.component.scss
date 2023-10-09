@@ -1,0 +1,31 @@
+h2,
+span {
+  color: black;
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 0;
+}
+.x-info-container {
+  display: flex;
+  flex-direction: column;
+}
+.carousel-container-x {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.big-container-x {
+  &:hover {
+    .carrousel-svg {
+      visibility: visible;
+      transition: 0.75s;
+      opacity: 1;
+    }
+  }
+  .carrousel-svg {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+.carrousel-icon-x {
+  height: 270px;
+}

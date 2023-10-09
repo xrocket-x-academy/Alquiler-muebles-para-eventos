@@ -47,18 +47,21 @@
       </div>
     </section>
     <button
-      class="btn btn-primary"
+      class="btn btn-primary x-button"
       type="submit"
       [disabled]="registerForm.invalid"
     >
       Logearse
     </button>
-    <div class="bg-warning"> <!-- // mensaje resultado del logueo -->
+    <div class="bg-warning">
+      <!-- // mensaje resultado del logueo -->
       {{ mensaje }}
     </div>
   </form>
   <div id="extra-text">
-    <span>Aun no tenes cuenta? <a routerLink="/auth/register">Login </a></span>
+    <span
+      >Aun no tenes cuenta? <a routerLink="/auth/register">Register</a></span
+    >
     <span><a href="#">Recuperar Password</a></span>
   </div>
 </main>
