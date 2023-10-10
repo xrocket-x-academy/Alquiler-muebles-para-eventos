@@ -3,11 +3,11 @@ const { FurnitureRentals } = require('../../models/furniture/furniturerentals');
 
 const rentalDetailsProvider = {
     create: async ({
-        rentalCode, unitPrice, quantity,
+        rentalCode, unitPrice, quantity, endDate,
     }) => {
         try {
             const newRentalDetails = await RentalDetails.build({
-                rentalCode, unitPrice, quantity,
+                rentalCode, unitPrice, quantity, endDate,
             });
             await newRentalDetails.validate();
             await newRentalDetails.save();
@@ -25,6 +25,38 @@ const rentalDetailsProvider = {
             return Promise.resolve(rentalDetails);
         } catch (error) {
             return Promise.resolve(error);
+        }
+    },
+    updateRentalDetailsByRentalCode: async (rentalCode) => {
+        try {
+            const rentalDetails = await RentalDetails.findOne({ where: { rentalCode } });
+            if (!rentalDetails) {
+                return Promise.reject(new Error('Rental details not found'));
+            }
+            rentalDetails.unitPrice = unitPrice;
+            rentalDetails.quantity = quantity;
+            rentalDetails.endDate = endDate;
+            await rentalDetails.validate();
+            await rentalDetails.save();
+            return Promise.resolve(rentalDetails);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    },
+    deleteRentalDetailsByRentalCode: async (rentalCode) => {
+        try {
+            const rentalDetails = await RentalDetails.findOne({ where: { rentalCode } });
+            if (!rentalDetails) {
+                return Promise.reject(new Error('Rental details not found'));
+            }
+            if (!rentalDetails.endDate) {
+                return Promise.reject(new Error('Rental details already deleted'));
+            }
+            rentalDetails.endDate = new Date();
+            await rentalDetails.save;
+            return Promise.resolve('Rental details deleted');
+        } catch (error) {
+            return Promise.reject(error);
         }
     },
     associate: {

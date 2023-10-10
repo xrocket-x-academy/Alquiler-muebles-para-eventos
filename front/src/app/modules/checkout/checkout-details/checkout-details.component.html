@@ -1,0 +1,13 @@
+<div class="checkout-details">
+    <h2>Checkout Details</h2>
+    <div class="checkout-card">
+      <div class="checkout-card-content">
+        <h3>{{ furniture.name }}</h3>
+        <p>Price per unit: ${{ furniture.price }}</p>
+        <p>Quantity: {{ quantity }}</p>
+        <p>Total Price: ${{ furniture.price * quantity }}</p>
+      </div>
+    </div>
+    <button class="confirm-button" (click)="confirmOrder()">Confirmar</button>
+  </div>
+  

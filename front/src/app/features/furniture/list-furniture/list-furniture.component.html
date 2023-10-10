@@ -1,0 +1,9 @@
+<div class="d-flex flex-column flex-wrap x-container">
+  <div>
+    <div class="row">
+      <div *ngFor="let furni of furnitures" class="card-container-x">
+        <app-card-furniture [furni]="furni"></app-card-furniture>
+      </div>
+    </div>
+  </div>
+</div>
