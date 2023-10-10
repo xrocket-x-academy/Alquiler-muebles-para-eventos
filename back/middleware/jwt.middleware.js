@@ -20,7 +20,7 @@ passport.use(
                     console.log('user doesnt exist');
                     return done('user doesnt exist', false);
                 }
-                return done(null, true);
+                return done(null, user);
             } catch (error) {
                 return done(error, false);
             }
