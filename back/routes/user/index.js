@@ -42,8 +42,8 @@ UserRouter.post(
     body('userId').notEmpty().isInt(),
     body('roleId').notEmpty().isInt(),
     validateValidationChain,
-    authenticationMiddleware,
     validateJwt,
+    authenticationMiddleware,
     userController.assosiate.role,
 );
 module.exports = { UserRouter };

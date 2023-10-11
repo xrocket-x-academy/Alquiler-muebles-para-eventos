@@ -16,8 +16,8 @@ const { authRouter } = require('./auth');
 const { roleRouter } = require('./role');
 // Rutas
 appRoutes.use('/furniture', furnitureRouter);
-appRoutes.use('/furniture-rentals', furnitureRentalsRouter);
-appRoutes.use('/rental-details', rentalDetailsRouter);
+// appRoutes.use('/furniture-rentals', furnitureRentalsRouter);
+// appRoutes.use('/rental-details', rentalDetailsRouter);
 
 appRoutes.use('/auth', authRouter);
 appRoutes.use('/user', UserRouter);
