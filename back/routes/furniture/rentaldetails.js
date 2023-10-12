@@ -1,12 +1,24 @@
 const express = require('express');
 
-const rentalDetailsRouter = express.Router();
+const RentalDetailsRouter = express.Router();
 
 const rentalDetailsControllers = require('../../controllers/furniture/rentaldetails');
 
-rentalDetailsRouter.post('/rental-details', rentalDetailsControllers.createRentalDetails);
-rentalDetailsRouter.get('/rental-details/:rentalCode', rentalDetailsControllers.getRentalDetailsByRentalCode);
-rentalDetailsRouter.put('/rental-details/:rentalCode', rentalDetailsControllers.updateRentalDetailsByRentalCode);
-rentalDetailsRouter.delete('/rental-details/:rentalCode', rentalDetailsControllers.deleteRentalDetailsByRentalCode);
+RentalDetailsRouter.post(
+    '/rental-details',
+    rentalDetailsControllers.createRentalDetails,
+);
+RentalDetailsRouter.get(
+    '/rental-details/:rentalCode',
+    rentalDetailsControllers.getRentalDetailsByRentalCode,
+);
+RentalDetailsRouter.put(
+    '/rental-details/:rentalCode',
+    rentalDetailsControllers.updateRentalDetailsByRentalCode,
+);
+RentalDetailsRouter.delete(
+    '/rental-details/:rentalCode',
+    rentalDetailsControllers.deleteRentalDetailsByRentalCode,
+);
 
-module.exports = rentalDetailsRouter;
+module.exports = { RentalDetailsRouter };

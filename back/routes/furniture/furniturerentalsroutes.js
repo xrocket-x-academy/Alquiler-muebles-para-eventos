@@ -1,12 +1,24 @@
 const express = require('express');
 
-const furnitureRentalsRouter = express.Router();
+const FurnitureRentalsRouter = express.Router();
 
 const furnitureRentalsController = require('../../controllers/furniture/furniturerentals');
 
-furnitureRentalsRouter.post('/furniture-rentals', furnitureRentalsController.createFurnitureRental);
-furnitureRentalsRouter.get('/furniture-rentals/:rentalcode', furnitureRentalsController.getFurnitureRentalByRentalCode);
-furnitureRentalsRouter.put('/furniture-rentals/:rentalcode', furnitureRentalsController.updateFurnitureRentalByRentalCode);
-furnitureRentalsRouter.delete('/furniture-rentals/:rentalcode', furnitureRentalsController.deleteFurnitureRentalByRentalCode);
+FurnitureRentalsRouter.post(
+    '/furniture-rentals',
+    furnitureRentalsController.createFurnitureRental,
+);
+FurnitureRentalsRouter.get(
+    '/furniture-rentals/:rentalcode',
+    furnitureRentalsController.getFurnitureRentalByRentalCode,
+);
+FurnitureRentalsRouter.put(
+    '/furniture-rentals/:rentalcode',
+    furnitureRentalsController.updateFurnitureRentalByRentalCode,
+);
+FurnitureRentalsRouter.delete(
+    '/furniture-rentals/:rentalcode',
+    furnitureRentalsController.deleteFurnitureRentalByRentalCode,
+);
 
-module.exports = furnitureRentalsRouter;
+module.exports = { FurnitureRentalsRouter };
