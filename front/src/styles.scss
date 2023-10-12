@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -20,13 +19,15 @@ $santex-academy-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$santex-academy-theme: mat.define-light-theme((
-  color: (
-    primary: $santex-academy-primary,
-    accent: $santex-academy-accent,
-    warn: $santex-academy-warn,
+$santex-academy-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $santex-academy-primary,
+      accent: $santex-academy-accent,
+      warn: $santex-academy-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -118,16 +119,24 @@ $orange-100: #e07912;
 $teal-100: #2b855d;
 
 // reseting styles
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-ul, ol{
+ul,
+ol {
   list-style: none;
 }
-a{
+a {
   text-decoration: none;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  min-height: 100dvh;
+}

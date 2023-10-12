@@ -9,18 +9,23 @@ const routes: Routes = [
   {
     path: 'form',
     component: FurnitureFormComponent,
-    // pathMatch: 'full',
+    pathMatch: 'full',
   },
   { path: 'list', component: ListFurnitureComponent },
   { path: 'details-furniture/:id', component: DetailsFurnitureComponent },
   {
+    path: '',
+    redirectTo: 'list',
+    pathMatch: 'full',
+  },
+  {
     path: '**',
-    redirectTo: 'list'
-  }
+    redirectTo: 'list',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes), CommonModule],
   exports: [RouterModule],
 })
-export class FurnitureRoutingModule { }
+export class FurnitureRoutingModule {}
