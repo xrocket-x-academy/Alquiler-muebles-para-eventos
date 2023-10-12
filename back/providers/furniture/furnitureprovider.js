@@ -68,15 +68,9 @@ const furnitureProvider = {
             return Promise.reject(error);
         }
     },
-    getAll: async ({ limit, offset }) => {
-        const finalLimit = limit || 10;
-        const finalOffset = offset || 0;
+    getAll: async () => {
         try {
-            const furniture = await Furniture.findAll({
-                attributes: ['id'],
-                limit: finalLimit,
-                offset: finalOffset,
-            });
+            const furniture = await Furniture.findAll();
             return Promise.resolve(furniture);
         } catch (error) {
             return Promise.reject(error);

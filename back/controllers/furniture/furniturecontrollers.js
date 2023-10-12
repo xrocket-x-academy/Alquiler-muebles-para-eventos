@@ -57,11 +57,10 @@ exports.deleteFurniture = async (req, res) => {
 
 exports.getAll = async (req, res) => {
     try {
-        const { limit, offset } = req.query;
-        const furnitureIds = await furnitureProvider.getAll({ limit: parseInt(limit, 10), offset: parseInt(offset, 10) });
-        res.json({ furnitureIds });
+        const furniture = await furnitureProvider.getAll();
+        res.json(furniture);
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching Furniture IDs' });
+        res.status(500).json({ message: 'Error fetching Furniture' });
     }
 };
 
