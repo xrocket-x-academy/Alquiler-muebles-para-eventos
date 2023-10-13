@@ -3,21 +3,23 @@ const Express = require('express');
 // Middlewares:
 const rootPath = require('../middleware/root_path.middleware');
 const errors = require('../middleware/error_handler.middleware');
-
-const appRoutes = Express.Router();
-
 // routers
 // const { signInRouter } = require('./auth/sign-in');
 const { UserRouter } = require('./user');
 const { authRouter } = require('./auth');
 const { roleRouter } = require('./role');
-const { furnitureRouter } = require('./furniture/furnitureroutes');
-const { furnitureRentalsRouter } = require('./furniture/furniturerentalsroutes');
-const { rentalDetailsRouter } = require('./furniture/rentaldetails');
+const { FurnitureRouter } = require('./furniture/furnitureroutes');
+const {
+    FurnitureRentalsRouter,
+} = require('./furniture/furniturerentalsroutes');
+const { RentalDetailsRouter } = require('./furniture/rentaldetails');
+
+const appRoutes = Express.Router();
+
 // Rutas
-appRoutes.use('/furniture', furnitureRouter);
-// appRoutes.use('/furniture-rentals', furnitureRentalsRouter);
-// appRoutes.use('/rental-details', rentalDetailsRouter);
+appRoutes.use('/furniture', FurnitureRouter);
+appRoutes.use('/furniture-rentals', FurnitureRentalsRouter);
+appRoutes.use('/rental-details', RentalDetailsRouter);
 
 appRoutes.use('/auth', authRouter);
 appRoutes.use('/user', UserRouter);

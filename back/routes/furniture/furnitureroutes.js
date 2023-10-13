@@ -1,46 +1,43 @@
 const express = require('express');
-
-const furnitureRouter = express.Router();
-
 const { authenticationMiddleware } = require('../../middleware/authentication');
-
 const furnitureController = require('../../controllers/furniture/furniturecontrollers');
-
 const { validateJwt } = require('../../middleware/jwt.middleware');
 
-furnitureRouter.post(
+const FurnitureRouter = express.Router();
+
+FurnitureRouter.post(
     '/',
     validateJwt,
     authenticationMiddleware,
     furnitureController.createFurniture,
 );
-furnitureRouter.get(
+FurnitureRouter.get(
     '/all',
     authenticationMiddleware,
     furnitureController.getAll,
 );
-furnitureRouter.get(
+FurnitureRouter.get(
     '/:id',
     authenticationMiddleware,
     furnitureController.getFurnitureById,
 );
-furnitureRouter.put(
+FurnitureRouter.put(
     '/:id',
     validateJwt,
     authenticationMiddleware,
     furnitureController.updateFurniture,
 );
-furnitureRouter.put(
+FurnitureRouter.put(
     '/update-availability/:id',
     validateJwt,
     authenticationMiddleware,
     furnitureController.updateAvailability,
 );
-furnitureRouter.delete(
+FurnitureRouter.delete(
     '/:id',
     validateJwt,
     authenticationMiddleware,
     furnitureController.deleteFurniture,
 );
 
-module.exports = furnitureRouter;
+module.exports = { FurnitureRouter };
