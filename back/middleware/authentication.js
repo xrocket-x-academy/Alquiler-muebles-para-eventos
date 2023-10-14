@@ -23,7 +23,7 @@ const authenticationMiddleware = (req, res, next) => {
     }
 
     // we check the user is trying to access his own aresource
-    if (req.params.id !== tokenDessencripted.sub) {
+    if (req.user.id !== tokenDessencripted.sub) {
         return ApiResponse.error(
             res,
             HttpsStatusCodes.UNAUTHORIZED,
