@@ -9,7 +9,9 @@ const signUpController = async (req, res) => {
 
     try {
         // we check the availability of the username and email
-        const emailIsAvaiable = await userProvider.checkAvailabilityOf.email(email);
+        const emailIsAvaiable = await userProvider.checkAvailabilityOf.email(
+            email,
+        );
         if (!emailIsAvaiable) {
             return ApiResponse.error(
                 res,
@@ -18,10 +20,7 @@ const signUpController = async (req, res) => {
             );
         }
 
-        const usernameIsAvaiable = await userProvider.checkAvailabilityOf.username(
-            username,
-        );
-
+        const usernameIsAvaiable = await userProvider.checkAvailabilityOf.username(username);
         if (!usernameIsAvaiable) {
             return ApiResponse.error(
                 res,
